@@ -14,7 +14,11 @@ REDIS = {
     'port': 9649,
 }
 
-STRIPE_SECRET = "sk_live_2TKQ9NK8dsOHasUihYDVnLlr"
-STRIPE_PUBLISHABLE = "pk_live_Et6aRkl9dHCLLOF3G75nkqji"
+# STRIPE_SECRET = "sk_live_2TKQ9NK8dsOHasUihYDVnLlr"
+# STRIPE_PUBLISHABLE = "pk_live_Et6aRkl9dHCLLOF3G75nkqji"
+
+STRIPE_SECRET = "sk_test_pqFpBoCmQXnKPUrtz8GEV1eO"
+STRIPE_PUBLISHABLE = "pk_test_keQHvvSTgakPBql0xshuqR60"
+
 
 # PREPEND_WWW = True
