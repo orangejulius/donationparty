@@ -14,3 +14,7 @@ REDIS = {
     'host': 'location',
     'port': 6379,
 }
+
+STRIPE_SECRET = "sk_test_pqFpBoCmQXnKPUrtz8GEV1eO"
+STRIPE_PUBLISHABLE = "pk_test_keQHvvSTgakPBql0xshuqR60"
+

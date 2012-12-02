@@ -13,3 +13,7 @@ REDIS = {
     'host': 'ray.redistogo.com',
     'port': 9649,
 }
+
+STRIPE_SECRET = "sk_live_2TKQ9NK8dsOHasUihYDVnLlr"
+STRIPE_PUBLISHABLE = "pk_live_Et6aRkl9dHCLLOF3G75nkqji"
+
