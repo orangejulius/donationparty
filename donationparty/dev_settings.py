@@ -25,4 +25,5 @@ PUSHER_APP_ID = '32797'
 #Amazon SES
 AWS_ACCESS_KEY_ID = 'AKIAIY3EENQ2ZO2D4JXA'
 AWS_SECRET_ACCESS_KEY = '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'
-EMAIL_BACKEND = 'django_ses.SESBackend'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
