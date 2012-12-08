@@ -1,3 +1,5 @@
+import os
+
 DATABASES = {
     'default': {
         'NAME': 'heroku_13e40e0b0a64db0',
@@ -29,4 +31,11 @@ AWS_ACCESS_KEY_ID = 'AKIAIUPWVZ2ROGYLKWJQ'
 AWS_SECRET_ACCESS_KEY = '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'
 EMAIL_BACKEND = 'django_ses.SESBackend'
 
-# PREPEND_WWW = True
+#) PREPEND_WWW = True
+
+#sendgrid
+EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
+EMAIL_HOST= 'smtp.sendgrid.net'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
