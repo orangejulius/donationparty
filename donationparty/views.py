@@ -127,6 +127,3 @@ def address_verification(request, round_id, secret_token):
         'settings': settings,
         'address_verification': True,
     }, context_instance=RequestContext(request))
-    
-def cron(request):
-    Round.expire_rounds()
