@@ -145,13 +145,29 @@ LOGGING = {
     }
 }
 
-if '/Users' in os.getcwd():
+STRIPE_SECRET = "sk_test_pqFpBoCmQXnKPUrtz8GEV1eO"
+STRIPE_PUBLISHABLE = "pk_test_keQHvvSTgakPBql0xshuqR60"
+
+PUSHER_KEY    = '84a77d4bc90038c4ad0b'
+PUSHER_SECRET = '41704e3d51a4deafee1c'
+PUSHER_APP_ID = '35691'
+
+EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
+EMAIL_HOST= 'smtp.sendgrid.net'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
+
+if not 'DONATIONPARTY-ENV' in os.environ:
     PROD = False
     from dev_settings import *
-else:
+elif os.environ['DONATIONPARTY-ENV'] == 'prod':
     PROD = True
     from prod_settings import *
     MIDDLEWARE_CLASSES = ('sslify.middleware.SSLifyMiddleware',) + MIDDLEWARE_CLASSES
+elif os.environ['DONATIONPARTY-ENV'] == 'stage':
+    PROD = False
+    from stage_settings import *
 USE_TZ = False
 SSL_HOST = 'www.donationparty.com'
 HTTP_HOST = 'www.donationparty.com'
