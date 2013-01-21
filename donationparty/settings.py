@@ -145,6 +145,9 @@ LOGGING = {
     }
 }
 
+STRIPE_SECRET = "sk_test_pqFpBoCmQXnKPUrtz8GEV1eO"
+STRIPE_PUBLISHABLE = "pk_test_keQHvvSTgakPBql0xshuqR60"
+
 if not 'DONATIONPARTY-ENV' in os.environ:
     PROD = False
     from dev_settings import *
