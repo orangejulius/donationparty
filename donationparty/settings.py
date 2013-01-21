@@ -152,6 +152,9 @@ elif os.environ['DONATIONPARTY-ENV'] == 'prod':
     PROD = True
     from prod_settings import *
     MIDDLEWARE_CLASSES = ('sslify.middleware.SSLifyMiddleware',) + MIDDLEWARE_CLASSES
+elif os.environ['DONATIONPARTY-ENV'] == 'stage':
+    PROD = False
+    from stage_settings import *
 USE_TZ = False
 SSL_HOST = 'www.donationparty.com'
 HTTP_HOST = 'www.donationparty.com'
