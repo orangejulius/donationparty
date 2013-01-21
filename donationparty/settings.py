@@ -148,6 +148,12 @@ LOGGING = {
 STRIPE_SECRET = "sk_test_pqFpBoCmQXnKPUrtz8GEV1eO"
 STRIPE_PUBLISHABLE = "pk_test_keQHvvSTgakPBql0xshuqR60"
 
+EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
+EMAIL_HOST= 'smtp.sendgrid.net'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
+
 if not 'DONATIONPARTY-ENV' in os.environ:
     PROD = False
     from dev_settings import *
