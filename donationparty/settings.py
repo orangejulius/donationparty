@@ -145,10 +145,10 @@ LOGGING = {
     }
 }
 
-if '/Users' in os.getcwd():
+if not 'DONATIONPARTY-ENV' in os.environ:
     PROD = False
     from dev_settings import *
-else:
+elif os.environ['DONATIONPARTY-ENV'] == 'prod':
     PROD = True
     from prod_settings import *
     MIDDLEWARE_CLASSES = ('sslify.middleware.SSLifyMiddleware',) + MIDDLEWARE_CLASSES
