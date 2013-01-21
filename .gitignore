@@ -4,3 +4,4 @@ venv
 *.swp
 celerybeat-schedule.*
 donationparty/static/*
+Session.vim
