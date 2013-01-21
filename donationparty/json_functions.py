@@ -8,13 +8,13 @@ import datetime
 def json_encode(data, *args, **kwargs):
     """
     The main issues with django's default json serializer is that properties that
-    had been added to an object dynamically are being ignored (and it also has 
+    had been added to an object dynamically are being ignored (and it also has
     problems with some models).
     """
 
     def _any(data):
         ret = None
-        # Opps, we used to check if it is of type list, but that fails 
+        # Opps, we used to check if it is of type list, but that fails
         # i.e. in the case of django.newforms.utils.ErrorList, which extends
         # the type "list". Oh man, that was a dumb mistake!
         if hasattr(data, 'to_json'):
@@ -44,7 +44,7 @@ def json_encode(data, *args, **kwargs):
         else:
             ret = data
         return ret
-    
+
     def _model(data):
         ret = {}
         # If we only have a model, we only want to encode the fields.
@@ -56,19 +56,19 @@ def json_encode(data, *args, **kwargs):
         for k in add_ons:
             ret[k] = _any(getattr(data, k))
         return ret
-    
+
     def _list(data):
         ret = []
         for v in data:
             ret.append(_any(v))
         return ret
-    
+
     def _dict(data):
         ret = {}
         for k,v in data.items():
             ret[str(k)] = _any(v)
         return ret
-    
+
     if hasattr(data, 'to_json'):
         data = data.to_json()
     ret = _any(data)

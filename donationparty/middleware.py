@@ -4,7 +4,6 @@ from django.http import HttpResponseRedirect, get_host
 SSL = 'SSL'
 
 class SSLRedirect:
-    
     def process_request(self, request):
         if not request.is_secure():
             return self._redirect(request)
