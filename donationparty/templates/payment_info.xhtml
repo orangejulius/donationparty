@@ -1,12 +1,12 @@
 {% if donated %}
     <h3>Your Donation</h3>
-    
+
     <p>Amazing, you've taken the plunge and donated to a good cause - lets hope you win!</p>
-    
+
 {% else %}
 <form action="/charge" method="post" id="payment-form">
     <h3>Your Donation</h3>
-            
+
     {% csrf_token %}
     <input type="hidden" name="round_id" value="{{ round.url }}" />
     <span class="payment-errors text-error"></span>

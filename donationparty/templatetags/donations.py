@@ -12,7 +12,7 @@ def render_donations(context, round):
         'donations': round.donations.all,
         'round': round
     }
-    
+
 @register.inclusion_tag('payment_info.xhtml', takes_context=True)
 def render_payment_info(context, round, donated=False, **kwargs):
     if not donated:
@@ -26,12 +26,12 @@ def render_payment_info(context, round, donated=False, **kwargs):
 @register.filter(name='round_to')
 def round_to(value, arg):
     return __builtins__['round'](value, arg)
-    
+
 @register.filter(name='relative')
 def relative(value):
     if not value:
         return u''
-    
+
     chunks = (
       (60 * 60 * 24 * 30, lambda n: ungettext('month', 'months', n)),
       (60 * 60 * 24, lambda n: ungettext('day', 'days', n)),
@@ -41,12 +41,12 @@ def relative(value):
       (0, lambda n: 'just now'),
     )
     return _do_timesince(value, chunks)
-    
+
 def _do_timesince(d, chunks, now=None):
     """
     Started as a copy of django.util.timesince.timesince, but modified to
     only output one time unit, and use months as the maximum unit of measure.
-    
+
     Takes two datetime objects and returns the time between d and now
     as a nicely formatted string, e.g. "10 minutes".  If d occurs after now,
     then "0 minutes" is returned.

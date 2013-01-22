@@ -3,7 +3,6 @@ DP.PaymentForm = function() {
 };
 
 DP.PaymentForm.prototype = {
-    
     setup: function() {
         $("#payment-form").submit(_.bind(function(event) {
             // disable the submit button to prevent repeated clicks
@@ -16,11 +15,11 @@ DP.PaymentForm.prototype = {
                 exp_month: $('.card-expiry-month').val(),
                 exp_year: $('.card-expiry-year').val()
             }, _.bind(this.stripeResponseHandler, this));
-            
+
             return false; // submit from callback
         }, this));
     },
-    
+
     stripeResponseHandler: function(status, response) {
         if (response.error) {
             $('.submit-button').removeAttr("disabled").removeClass('active');
@@ -32,15 +31,13 @@ DP.PaymentForm.prototype = {
             this.submitForm();
         }
     },
-    
+
     submitForm: function() {
         var $form = $("#payment-form");
         var data = $form.serialize();
-        
+
         $.post('/charge', data, function(data) {
             DP.realtime.reloadDonations(data);
         });
     }
-    
 };
-
