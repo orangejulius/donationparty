@@ -1,14 +1,80 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Donationparty</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Donationparty</title>
+    <meta charset="utf-8">
+    <title>Donation Party! Make a difference and have the chance to win something awesome.</title>
 
-<%= yield %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Make a difference and have the chance to win something awesome.">
 
-</body>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <script>
+      var DP = {};
+      DP.Round = {
+        'url': "{{ round.url }}",
+        'closed': {{ round.closed|yesno:"true,false" }}
+      };
+      {% if round.seconds_left > 0 %}
+      DP.Round.secondsLeft = {{ round.seconds_left }};
+      {% endif %}
+      DP.PUSHER_KEY = "{{ settings.PUSHER_KEY }}";
+    </script>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div id="fb-root"></div>
+
+    <div class="container-narrow">
+      <%= yield %>
+
+      <hr>
+
+      <div class="footer row-fluid">
+        <span class="span7">
+          <p>Made with sundried tomatoes and various cheeses by <a href="https://twitter.com/juliansimioni">@juliansimioni</a>, <a href="https://twitter.com/samuelclay">@samuelclay</a>, <a href="https://twitter.com/tommoor">@tommoor</a> and <a href="https://twitter.com/elylerner">@elylerner</a> for the Stripe <a href="https://stripe.com/blog/hack-to-the-future">Hack to the Future</a> hackathon.</p>
+        </span>
+        <span class="span5 powered-by">
+          <a href="http://stripe.com" class="powered-by-stripe"><img src="<%= asset_path "stripe.png" %>" alt="Powered by Stripe"/></a>
+          <a href="/" class="powered-by-dp btn-success btn-small btn">Create a Donation Party</a>
+        </span>
+      </div>
+    </div>
+
+    <!-- Base -->
+    <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+    <script type="text/javascript">
+      Stripe.setPublishableKey('{{ settings.STRIPE_PUBLISHABLE }}');
+    </script>
+
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1703053-20']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+    </script>
+
+    <!-- Social Plugins -->
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=444110298970974";
+      fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+  </body>
 </html>
