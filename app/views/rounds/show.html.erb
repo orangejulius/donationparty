@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Url:</b>
+  <%= @round.url %>
+</p>
+
+<p>
+  <b>Charity:</b>
+  <%= @round.charity %>
+</p>
+
+<p>
+  <b>Expire time:</b>
+  <%= @round.expire_time %>
+</p>
+
+<p>
+  <b>Closed:</b>
+  <%= @round.closed %>
+</p>
+
+<p>
+  <b>Failed:</b>
+  <%= @round.failed %>
+</p>
+
+<p>
+  <b>Max amount:</b>
+  <%= @round.max_amount %>
+</p>
+
+<p>
+  <b>Winning address1:</b>
+  <%= @round.winning_address1 %>
+</p>
+
+<p>
+  <b>Winning address2:</b>
+  <%= @round.winning_address2 %>
+</p>
+
+<p>
+  <b>Secret token:</b>
+  <%= @round.secret_token %>
+</p>
+
+
+<%= link_to 'Edit', edit_round_path(@round) %> |
+<%= link_to 'Back', rounds_path %>

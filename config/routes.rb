@@ -1,4 +1,7 @@
 Donationparty::Application.routes.draw do
+  resources :rounds
+
+
   get "home/index"
 
   root :to => "home#index"

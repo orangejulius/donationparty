@@ -11,6 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20130122194142) do
+
+  create_table "rounds", :force => true do |t|
+    t.string   "url"
+    t.string   "charity"
+    t.date     "expire_time"
+    t.boolean  "closed"
+    t.boolean  "failed"
+    t.integer  "max_amount"
+    t.string   "winning_address1"
+    t.string   "winning_address2"
+    t.string   "secret_token"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
 
 end

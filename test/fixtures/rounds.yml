@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  url: MyString
+  charity: MyString
+  expire_time: 2013-01-22
+  closed: 
+  failed: 
+  max_amount: 
+  winning_address1: MyString
+  winning_address2: MyString
+  secret_token: MyString
+
+two:
+  url: MyString
+  charity: MyString
+  expire_time: 2013-01-22
+  closed: 
+  failed: 
+  max_amount: 
+  winning_address1: MyString
+  winning_address2: MyString
+  secret_token: MyString
