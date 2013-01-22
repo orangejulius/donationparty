@@ -1,7 +1,2 @@
-venv
-*.pyc
-*.un~
-*.swp
 celerybeat-schedule.*
 donationparty/static/*
-Session.vim
