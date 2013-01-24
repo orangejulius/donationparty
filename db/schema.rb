@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130122194142) do
+ActiveRecord::Schema.define(:version => 20130124234731) do
+
+  create_table "donations", :force => true do |t|
+    t.string   "email"
+    t.string   "name"
+    t.string   "stripe_token"
+    t.decimal  "amount"
+    t.integer  "round_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "donations", ["round_id"], :name => "index_donations_on_round_id"
 
   create_table "rounds", :force => true do |t|
     t.string   "url"
