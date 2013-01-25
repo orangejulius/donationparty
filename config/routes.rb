@@ -3,6 +3,9 @@ Donationparty::Application.routes.draw do
     resources :rounds
   end
 
+  get '/round/:url' => 'rounds#display'
+  post '/round/:url' => 'rounds#setup'
+
   get "home/index"
 
   root :to => "home#index"
