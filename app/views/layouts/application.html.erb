@@ -12,17 +12,6 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <script>
-      var DP = {};
-      DP.Round = {
-        'url': "{{ round.url }}",
-        'closed': {{ round.closed|yesno:"true,false" }}
-      };
-      {% if round.seconds_left > 0 %}
-      DP.Round.secondsLeft = {{ round.seconds_left }};
-      {% endif %}
-      DP.PUSHER_KEY = "{{ settings.PUSHER_KEY }}";
-    </script>
     <%= stylesheet_link_tag    "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
