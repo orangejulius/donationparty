@@ -1,5 +1,12 @@
 class RoundsController < ApplicationController
   def setup
+    @round = Round.where(url: params[:url]).first
+
+    @round.charity = params[:charity]
+    @round.save
+    @donated = false
+
+    render 'display'
   end
 
   def display
