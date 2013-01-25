@@ -1,6 +1,7 @@
 Donationparty::Application.routes.draw do
-  resources :rounds
-
+  namespace :admin do
+    resources :rounds
+  end
 
   get "home/index"
 
