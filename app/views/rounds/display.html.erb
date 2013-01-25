@@ -1,0 +1,28 @@
+<%= stylesheet_link_tag "rounds" %>
+<div class="boxed lead running">
+  <img src="<%= asset_path @round.charity + '.png' %>" />
+    <h2><%= @round.charity %></h2>
+    <p>Securely donate a randomly selected amount between <strong>$1 and $10</strong>. The person who donates the most wins something cool from Amazon!</p>
+
+    <div class="social">
+        <label for="name">Share the party and gather more donations!</label>
+        <input type="text" value="<%= url_for only_path: false %>" name="share"/>
+        <span class="buttons">
+            <div class="fb-send"></div>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-text="Party time! Excellent!">Tweet</a>
+        </span>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5 boxed payment-info">
+        <%= render 'payment_info' %>
+    </div>
+    <div class="span7">
+        <div class="timer"></div>
+
+        <ol class="donations">
+          <%= render 'donations' %>
+        </ol>
+    </div>
+</div>
