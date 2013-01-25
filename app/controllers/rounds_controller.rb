@@ -1,4 +1,10 @@
 class RoundsController < ApplicationController
+  def setup
+  end
+
+  def display
+  end
+
   # GET /rounds
   # GET /rounds.json
   def index
