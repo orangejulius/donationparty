@@ -1,6 +1,6 @@
 Donationparty::Application.routes.draw do
-  namespace :admin do
-    resources :rounds
+  scope "/admin" do
+      resources :rounds
   end
 
   get '/round/:url' => 'rounds#display'
