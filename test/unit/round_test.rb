@@ -9,4 +9,10 @@ class RoundTest < ActiveSupport::TestCase
     r2 = Round.new
     assert_not_equal r.url, r2.url
   end
+
+  test "newly created round has expire time of one hour" do
+    r = Round.new
+    assert_not_nil r.expire_time
+    assert Time.now + 1.hours - r.expire_time < 1 # fuzzy time comparison
+  end
 end
