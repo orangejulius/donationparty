@@ -2,8 +2,8 @@
 <%= javascript_tag do %>
   var DP = {};
   DP.Round = {
-    'url': "{{ round.url }}",
-    'closed': {{ round.closed|yesno:"true,false" }}
+    'url': "<%= j @round.url %>",
+    'closed': <%= @round.closed %>
   };
   <% if @round.seconds_left > 0 %>
     DP.Round.secondsLeft = '<%= @round.seconds_left %>';

@@ -5,7 +5,7 @@
 
 <% else %>
   <%= form_tag('/charge', method: 'post', id: 'payment-form') do %>
-    <input type="hidden" name="round_id" value="{{ round.url }}" />
+    <input type="hidden" name="round_id" value="<%= @round.url %>" />
     <span class="payment-errors text-error"></span>
     <div class="form-row">
         <label for="donator-name">Your name</label>
