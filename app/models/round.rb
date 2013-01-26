@@ -4,8 +4,12 @@ class Round < ActiveRecord::Base
   has_many :donations
 
   after_initialize do |round|
-    self.url = SecureRandom.hex(3)
-    self.expire_time = Time.now + 1.hours
+    if self.url.nil?
+      self.url = SecureRandom.hex(3)
+    end
+    if self.expire_time.nil?
+      self.expire_time = Time.now + 1.hours
+    end
     self.save
   end
 end
