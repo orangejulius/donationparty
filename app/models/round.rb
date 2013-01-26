@@ -5,5 +5,7 @@ class Round < ActiveRecord::Base
 
   after_initialize do |round|
     self.url = SecureRandom.hex(3)
+    self.expire_time = Time.now + 1.hours
+    self.save
   end
 end
