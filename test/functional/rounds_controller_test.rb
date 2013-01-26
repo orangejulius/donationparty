@@ -5,6 +5,12 @@ class RoundsControllerTest < ActionController::TestCase
     @round = rounds(:one)
   end
 
+  test "new round should be displayable" do
+    @r = Round.new
+    post :display, url: @r.url,  charity: 'eff'
+    assert_response :success
+  end
+
   test "should get index" do
     get :index
     assert_response :success
