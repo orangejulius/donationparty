@@ -3,7 +3,7 @@ class CreateRounds < ActiveRecord::Migration
     create_table :rounds do |t|
       t.string :url
       t.string :charity
-      t.date :expire_time
+      t.timestamp :expire_time
       t.boolean :closed
       t.boolean :failed
       t.integer :max_amount

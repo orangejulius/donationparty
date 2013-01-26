@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20130124234731) do
   create_table "rounds", :force => true do |t|
     t.string   "url"
     t.string   "charity"
-    t.date     "expire_time"
+    t.datetime "expire_time"
     t.boolean  "closed"
     t.boolean  "failed"
     t.integer  "max_amount"
