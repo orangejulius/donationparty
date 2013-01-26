@@ -8,7 +8,7 @@
   <% if @round.seconds_left > 0 %>
     DP.Round.secondsLeft = '<%= @round.seconds_left %>';
   <% end %>
-  DP.PUSHER_KEY = '<%= ENV['PUSHER_KEY'] %>';
+  DP.PUSHER_KEY = '<%= Rails.application.config.pusher_key %>';
 <% end %>
 <div class="boxed lead running">
   <img src="<%= asset_path @round.charity + '.png' %>" />
