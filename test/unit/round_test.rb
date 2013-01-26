@@ -15,4 +15,15 @@ class RoundTest < ActiveSupport::TestCase
     assert_not_nil r.expire_time
     assert Time.now + 1.hours - r.expire_time < 1 # fuzzy time comparison
   end
+
+  test "url and expire_time persist on save" do
+    r = Round.new
+    url = r.url
+    r.save
+
+    r2 = Round.where(url: url).first
+
+    assert_equal r2.url, r.url
+    assert_equal r2.expire_time, r.expire_time
+  end
 end
