@@ -4,7 +4,7 @@ class CreateRounds < ActiveRecord::Migration
       t.string :url
       t.string :charity
       t.timestamp :expire_time
-      t.boolean :closed
+      t.boolean :closed, default: false
       t.boolean :failed
       t.integer :max_amount
       t.string :winning_address1
