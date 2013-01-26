@@ -35,4 +35,12 @@ class RoundTest < ActiveSupport::TestCase
 
     assert r.seconds_left - 1.hours < 1
   end
+
+  test "seconds_left is never negative" do
+    r = Round.new
+
+    now = Time.now
+    r.expire_time = now - 2.hours
+    assert_equal 0, r.seconds_left
+  end
 end
