@@ -12,4 +12,8 @@ class Round < ActiveRecord::Base
     end
     self.save
   end
+
+  def seconds_left()
+      self.expire_time - Time.now
+  end
 end
