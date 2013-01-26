@@ -26,4 +26,13 @@ class RoundTest < ActiveSupport::TestCase
     assert_equal r2.url, r.url
     assert_equal r2.expire_time, r.expire_time
   end
+
+  test "seconds_left returns time until round expires" do
+    r = Round.new
+
+    now = Time.now
+    r.expire_time = now + 1.hours
+
+    assert r.seconds_left - 1.hours < 1
+  end
 end
