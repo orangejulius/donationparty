@@ -16,4 +16,3 @@
 //= require backbone-rails
 //= require twitter/bootstrap
 //= require underscore
-//= require_tree .
