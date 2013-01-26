@@ -14,6 +14,6 @@ class Round < ActiveRecord::Base
   end
 
   def seconds_left()
-      self.expire_time - Time.now
+      [self.expire_time - Time.now, 0].max
   end
 end
