@@ -3,6 +3,9 @@ Donationparty::Application.configure do
   config.pusher_key = '10684b1b1c022fc27bbb'
   config.pusher_secret = 'd8b223f417ee234ad889'
 
+  config.stripe_secret = "sk_test_pqFpBoCmQXnKPUrtz8GEV1eO"
+  config.stripe_publishable = "pk_test_keQHvvSTgakPBql0xshuqR60"
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
