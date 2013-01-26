@@ -1,12 +1,10 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
-DP.RealTime = function() {
+var DP = {
+	RealTime: function() {
     this.setup();
+	},
 };
 
 DP.RealTime.prototype = {
-
     setup: function() {
         this.pusher = new Pusher(DP.PUSHER_KEY);
         this.channel = this.pusher.subscribe(DP.Round.url);
@@ -52,14 +50,11 @@ DP.RealTime.prototype = {
 
 };
 
-
 $(document).ready(function() {
-
     if (!DP.Round.closed) {
         DP.realtime = new DP.RealTime();
         DP.paymentform = new DP.PaymentForm();
     }
-
 });
 
 DP.PaymentForm = function() {
