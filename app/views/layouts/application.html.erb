@@ -38,7 +38,7 @@
     <!-- Base -->
     <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
     <script type="text/javascript">
-      Stripe.setPublishableKey('{{ settings.STRIPE_PUBLISHABLE }}');
+      Stripe.setPublishableKey('<%= Rails.application.config.stripe_publishable %>');
     </script>
 
 
