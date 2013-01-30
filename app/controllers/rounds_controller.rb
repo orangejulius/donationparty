@@ -9,7 +9,8 @@ class RoundsController < ApplicationController
   end
 
   def status
-    render nothing: true
+    @round = Round.where(url: params[:url]).first
+    render json: { 'round' => @round }
   end
 
   # GET /rounds
