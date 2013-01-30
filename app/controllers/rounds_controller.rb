@@ -11,7 +11,8 @@ class RoundsController < ApplicationController
   def status
     @round = Round.where(url: params[:url]).first
     @donations = render_to_string(partial: 'donations')
-    render json: { 'round' => @round, 'donations_template' => @donations }
+    @payment_info = render_to_string(partial: 'payment_info')
+    render json: { 'round' => @round, 'donations_template' => @donations, 'payment_info_template' => @payment_info }
   end
 
   # GET /rounds
