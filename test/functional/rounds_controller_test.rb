@@ -14,6 +14,9 @@ class RoundsControllerTest < ActionController::TestCase
   test "round status returns round and html info" do
     get :status, url: @round.url
     assert_response :success
+
+    response = JSON.parse(@response.body)
+    assert_equal @round.url, response['round']['url']
   end
 
   test "should get index" do
