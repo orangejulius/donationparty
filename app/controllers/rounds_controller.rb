@@ -8,6 +8,10 @@ class RoundsController < ApplicationController
 
   end
 
+  def status
+    render nothing: true
+  end
+
   # GET /rounds
   # GET /rounds.json
   def index

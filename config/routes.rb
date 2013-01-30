@@ -4,6 +4,7 @@ Donationparty::Application.routes.draw do
   end
 
   match '/round/:url' => 'rounds#display'
+  get '/round/status/:url' => 'rounds#status'
   post '/charge' => 'donations#new'
 
   get "home/index"
