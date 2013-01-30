@@ -11,6 +11,11 @@ class RoundsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "round status returns round and html info" do
+    get :status, url: @round.url
+    assert_response :success
+  end
+
   test "should get index" do
     get :index
     assert_response :success
