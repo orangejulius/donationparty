@@ -17,6 +17,7 @@ class RoundsControllerTest < ActionController::TestCase
 
     response = JSON.parse(@response.body)
     assert_equal @round.url, response['round']['url']
+    assert_match '<li', response['donations_template']
   end
 
   test "should get index" do
