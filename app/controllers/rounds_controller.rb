@@ -10,7 +10,8 @@ class RoundsController < ApplicationController
 
   def status
     @round = Round.where(url: params[:url]).first
-    render json: { 'round' => @round }
+    @donations = render_to_string(partial: 'donations')
+    render json: { 'round' => @round, 'donations_template' => @donations }
   end
 
   # GET /rounds
