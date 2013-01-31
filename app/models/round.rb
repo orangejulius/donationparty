@@ -18,5 +18,15 @@ class Round < ActiveRecord::Base
   end
 
   def winner
+    if self.closed == false
+      return nil
+    end
+    highest = nil
+    self.donations.each do |donation|
+      if highest.nil? or donation.amount > highest.amount
+        highest = donation
+      end
+    end
+    return highest
   end
 end
