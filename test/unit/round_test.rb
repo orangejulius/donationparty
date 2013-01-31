@@ -43,4 +43,9 @@ class RoundTest < ActiveSupport::TestCase
     r.expire_time = now - 2.hours
     assert_equal 0, r.seconds_left
   end
+
+  test "winner returns nil if no donations" do
+    round = Round.new
+    assert_nil round.winner
+  end
 end
