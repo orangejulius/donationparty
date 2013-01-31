@@ -21,15 +21,16 @@ class RoundsControllerTest < ActionController::TestCase
 
     assert_not_nil Donation.where(round_id: @round.id).first
     check_status_response
+    assert_no_match /<form/, @response_json['payment_info_template']
   end
 
   def check_status_response
     assert_response :success
 
-    response = JSON.parse(@response.body)
-    assert_equal @round.url, response['round']['url']
-    assert_match '<li', response['donations_template']
-    assert_match '<h3>', response['payment_info_template']
+    @response_json = JSON.parse(@response.body)
+    assert_equal @round.url, @response_json['round']['url']
+    assert_match '<li', @response_json['donations_template']
+    assert_match '<h3>', @response_json['payment_info_template']
   end
 
   test "should get index" do
