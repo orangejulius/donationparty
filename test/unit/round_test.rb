@@ -48,4 +48,24 @@ class RoundTest < ActiveSupport::TestCase
     round = Round.new
     assert_nil round.winner
   end
+
+  test "winner returns donation with highest amount if round finished" do
+    round = Round.create
+    d1 = Donation.new
+    d1.round = round
+    d1.amount = 4
+    d1.save
+
+    d2 = Donation.new
+    d2.round = round
+    d2.amount = 5
+    d2.save
+
+    assert_nil round.winner
+
+    round.closed = true
+    round.save
+
+    assert_equal d2, round.winner
+  end
 end
