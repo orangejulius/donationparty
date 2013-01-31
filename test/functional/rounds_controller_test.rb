@@ -16,6 +16,13 @@ class RoundsControllerTest < ActionController::TestCase
     check_status_response
   end
 
+  test "charge creates new donation and returns round info" do
+    post :charge, stripeToken: 'token', round_id: @round.url
+
+    assert_not_nil Donation.where(round_id: @round.id).first
+    check_status_response
+  end
+
   def check_status_response
     assert_response :success
 
