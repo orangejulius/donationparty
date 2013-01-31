@@ -16,4 +16,7 @@ class Round < ActiveRecord::Base
   def seconds_left()
       [self.expire_time - Time.now, 0].max
   end
+
+  def winner
+  end
 end
