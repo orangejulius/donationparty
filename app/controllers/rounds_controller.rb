@@ -13,6 +13,8 @@ class RoundsController < ApplicationController
     @donation = Donation.new
     @donation.round = @round
     @donation.save
+
+    @donated = true
     render_status
   end
 
