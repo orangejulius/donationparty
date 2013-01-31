@@ -5,11 +5,23 @@ class RoundsController < ApplicationController
     @round.charity = params[:charity]
     @round.save
     @donated = false
+  end
 
+  def charge
+    @round = Round.where(url: params[:round_id]).first
+
+    @donation = Donation.new
+    @donation.round = @round
+    @donation.save
+    render_status
   end
 
   def status
     @round = Round.where(url: params[:url]).first
+    render_status
+  end
+
+  def render_status
     @donations = render_to_string(partial: 'donations')
     @payment_info = render_to_string(partial: 'payment_info')
     render json: { 'round' => @round, 'donations_template' => @donations, 'payment_info_template' => @payment_info }
