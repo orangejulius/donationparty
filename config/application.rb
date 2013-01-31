@@ -58,5 +58,7 @@ module Donationparty
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.gravatar_url = 'https://www.gravatar.com/avatar/%s?d=retro'
   end
 end
