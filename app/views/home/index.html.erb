@@ -8,7 +8,7 @@
 <div class="highlight">
   <div class="container-narrow">
 
-  <form action="<%= new_round %>" method="POST">
+  <form action="<%= '/round/' + @round.url %>" method="POST">
     <ul class="charities">
       <li class="charity" title="Electronic Frontier Foundation">
         <label><input type="radio" name="charity" value="eff" /><img src="<%= asset_path "eff.png" %>" /> <span>EFF</span></label>
