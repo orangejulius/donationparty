@@ -10,8 +10,7 @@ class RoundsController < ApplicationController
   def charge
     @round = Round.where(url: params[:round_id]).first
 
-    @donation = Donation.new
-    @donation.round = @round
+    @donation = Donation.new(round: @round, email: params[:email], name: params[:name], stripe_token: params[:stripeToken])
     @donation.save
 
     @donated = true
