@@ -17,9 +17,13 @@ class RoundsControllerTest < ActionController::TestCase
   end
 
   test "charge creates new donation and returns round info" do
-    post :charge, stripeToken: 'token', round_id: @round.url
+    post :charge, stripeToken: 'token', round_id: @round.url, name: 'Test User', email: 'test.email@example.com'
 
-    assert_not_nil Donation.where(round_id: @round.id).first
+    @donation = Donation.where(round_id: @round.id).first
+    assert_not_nil @donation
+    assert_equal 'token', @donation.stripe_token
+    assert_equal 'Test User', @donation.name
+    assert_equal 'test.email@example.com', @donation.email
     check_status_response
     assert_no_match /<form/, @response_json['payment_info_template']
   end
