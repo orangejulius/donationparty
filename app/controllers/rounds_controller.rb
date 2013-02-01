@@ -13,7 +13,8 @@ class RoundsController < ApplicationController
     @donation = Donation.new(round: @round, email: params[:email], name: params[:name], stripe_token: params[:stripeToken])
     @donation.save
 
-    @donated = true
+    cookies['donated_'+@round.url] = 'yup'
+
     render_status
   end
 
@@ -23,6 +24,7 @@ class RoundsController < ApplicationController
   end
 
   def render_status
+    @donated = cookies['donated_'+@round.url]
     @donations = render_to_string(partial: 'donations')
     @payment_info = render_to_string(partial: 'payment_info')
     render json: { 'seconds_left' => @round.seconds_left.round, 'donations_template' => @donations, 'payment_info_template' => @payment_info }
