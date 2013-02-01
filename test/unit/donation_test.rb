@@ -7,6 +7,7 @@ class DonationTest < ActiveSupport::TestCase
     assert_not_nil d.amount
     assert d.amount > 0
     assert d.amount < Rails.application.config.max_donation
+    assert_not_equal d.amount.to_i, d.amount, "donation amount should not be integer (most of the time)"
 
     d2 = Donation.new
 
