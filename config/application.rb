@@ -2,6 +2,8 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
+require 'active_support/core_ext/numeric/time'
+
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
   Bundler.require(*Rails.groups(:assets => %w(development test)))
@@ -62,5 +64,7 @@ module Donationparty
     config.gravatar_url = 'https://www.gravatar.com/avatar/%s?d=retro'
 
     config.max_donation = 10
+
+    config.round_duration = 1.hour
   end
 end
