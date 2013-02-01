@@ -25,7 +25,7 @@ class RoundsController < ApplicationController
   def render_status
     @donations = render_to_string(partial: 'donations')
     @payment_info = render_to_string(partial: 'payment_info')
-    render json: { 'round' => @round, 'donations_template' => @donations, 'payment_info_template' => @payment_info }
+    render json: { 'seconds_left' => @round.seconds_left.round, 'donations_template' => @donations, 'payment_info_template' => @payment_info }
   end
 
   # GET /rounds
