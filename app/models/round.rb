@@ -8,7 +8,7 @@ class Round < ActiveRecord::Base
       self.url = SecureRandom.hex(3)
     end
     if self.expire_time.nil?
-      self.expire_time = Time.now + 1.hours
+      self.expire_time = Time.now + Rails.application.config.round_duration
     end
     self.save
   end
