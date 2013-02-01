@@ -60,5 +60,7 @@ module Donationparty
     config.assets.version = '1.0'
 
     config.gravatar_url = 'https://www.gravatar.com/avatar/%s?d=retro'
+
+    config.max_donation = 10
   end
 end
