@@ -40,6 +40,16 @@ class RoundsControllerTest < ActionController::TestCase
     assert_match '<h3>', @response_json['payment_info_template']
   end
 
+  test "charity can only be set once" do
+    @round = Round.new
+
+    post :set_charity, url: @round.url, charity: 'test_charity'
+    assert_equal 'test_charity', assigns[:round].charity
+
+    post :set_charity, url: @round.url, charity: 'test_charity2'
+    assert_equal 'test_charity', assigns[:round].charity
+  end
+
   test "should get index" do
     get :index
     assert_response :success
