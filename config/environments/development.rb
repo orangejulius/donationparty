@@ -6,6 +6,8 @@ Donationparty::Application.configure do
   config.stripe_secret = "sk_test_pqFpBoCmQXnKPUrtz8GEV1eO"
   config.stripe_publishable = "pk_test_keQHvvSTgakPBql0xshuqR60"
 
+  config.round_duration = 5.minutes
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
