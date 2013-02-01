@@ -31,9 +31,10 @@ class RoundTest < ActiveSupport::TestCase
     r = Round.new
 
     now = Time.now
-    r.expire_time = now + 1.hours
+    round_duration = Rails.application.config.round_duration
+    r.expire_time = now + round_duration
 
-    assert r.seconds_left - 1.hours < 1
+    assert r.seconds_left - round_duration < 1
   end
 
   test "seconds_left is never negative" do
