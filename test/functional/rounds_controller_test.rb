@@ -7,7 +7,10 @@ class RoundsControllerTest < ActionController::TestCase
 
   test "new round should be displayable" do
     @r = Round.new
-    post :display, url: @r.url,  charity: 'eff'
+    post :set_charity, url: @r.url,  charity: 'eff'
+    assert_response :success
+
+    get :display, url: @r.url
     assert_response :success
   end
 

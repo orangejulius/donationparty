@@ -3,7 +3,8 @@ Donationparty::Application.routes.draw do
       resources :rounds
   end
 
-  match '/round/:url' => 'rounds#display'
+  get '/round/:url' => 'rounds#display'
+  post '/round/:url' => 'rounds#set_charity'
   get '/round_status/:url' => 'rounds#status'
   post '/charge' => 'rounds#charge'
 
