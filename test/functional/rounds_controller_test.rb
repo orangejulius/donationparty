@@ -32,7 +32,7 @@ class RoundsControllerTest < ActionController::TestCase
     assert_response :success
 
     @response_json = JSON.parse(@response.body)
-    assert_equal @round.url, @response_json['round']['url']
+    assert_equal @round.seconds_left.round, @response_json['seconds_left']
     assert_match '<li', @response_json['donations_template']
     assert_match '<h3>', @response_json['payment_info_template']
   end
