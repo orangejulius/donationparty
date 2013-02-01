@@ -11,7 +11,7 @@ class RoundsController < ApplicationController
   def display
     @round = Round.where(url: params[:url]).first
 
-    @donated = false
+    @donated = cookies['donated_'+@round.url]
   end
 
   def charge
