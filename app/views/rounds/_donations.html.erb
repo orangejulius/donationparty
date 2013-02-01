@@ -1,10 +1,10 @@
 <% @round.donations.each do |donation| %>
-    <li class="DP-donation {% if round.winner == donation %}highlighted{% endif %}">
+    <li class="DP-donation <% if @round.winner == donation %>highlighted<% end %>">
         <div class="DP-donation-avatar">
-            <img class="DP-donation-avatar-photo" src="{{ donation.gravatar_url }}">
+            <img class="DP-donation-avatar-photo" src="<%= donation.gravatar_url %>">
         </div>
-        <h3 class="DP-donation-name">{{ donation.name }}</h3>
-        <p class="DP-donation-time">Donated {{ donation.created|relative }} ago</p>
+        <h3 class="DP-donation-name"><%= donation.name %></h3>
+        <p class="DP-donation-time">Donated <%= time_ago_in_words(donation.created_at) %> ago</p>
         <p class="DP-donation-amount">
             <% if @round.closed %>
                 <%= donation.amount %>
