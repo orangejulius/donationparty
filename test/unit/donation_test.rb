@@ -1,6 +1,18 @@
 require 'test_helper'
 
 class DonationTest < ActiveSupport::TestCase
+  test "donation amount randomly generated on create" do
+    d = Donation.new
+
+    assert_not_nil d.amount
+    assert d.amount > 0
+    assert d.amount < Rails.application.config.max_donation
+
+    d2 = Donation.new
+
+    assert_not_equal d.amount, d2.amount
+  end
+
   test "donation can return gravatar url" do
     @d = Donation.new(email: 'test1@example.com')
 
