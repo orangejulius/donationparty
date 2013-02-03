@@ -6,9 +6,7 @@
     'url': "<%= j @round.url %>",
     'closed': <%= @round.closed %>
   };
-  <% if @round.seconds_left > 0 %>
-    DP.Round.secondsLeft = '<%= @round.seconds_left.round %>';
-  <% end %>
+  DP.Round.secondsLeft = '<%= @round.seconds_left.round %>';
   DP.PUSHER_KEY = '<%= Rails.application.config.pusher_key %>';
 <% end %>
 <div class="boxed lead running">
