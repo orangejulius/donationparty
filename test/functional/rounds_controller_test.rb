@@ -14,6 +14,17 @@ class RoundsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "closed round displayed with closed view" do
+    @r = Round.new
+    @r.closed = true
+    @r.charity = 'eff'
+    @r.save
+
+    get :display, url: @r.url
+    assert_response :success
+    assert_template :closed
+  end
+
   test "round status returns round and html info" do
     get :status, url: @round.url
     check_status_response
