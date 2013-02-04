@@ -5,17 +5,17 @@ class Round < ActiveRecord::Base
   belongs_to :charity
 
   after_initialize do |round|
-    if self.url.nil?
+    if url.nil?
       self.url = SecureRandom.hex(3)
     end
-    if self.expire_time.nil?
+    if expire_time.nil?
       self.expire_time = Time.now + Rails.application.config.round_duration
     end
-    self.save
+    save
   end
 
   def seconds_left()
-      [self.expire_time - Time.now, 0].max
+      [expire_time - Time.now, 0].max
   end
 
   def closed
@@ -26,11 +26,11 @@ class Round < ActiveRecord::Base
   end
 
   def winner
-    if self.closed == false
+    if closed == false
       return nil
     end
     highest = nil
-    self.donations.each do |donation|
+    donations.each do |donation|
       if highest.nil? or donation.amount > highest.amount
         highest = donation
       end
@@ -39,12 +39,12 @@ class Round < ActiveRecord::Base
   end
 
   def failed
-    self.closed and self.donations.count < Rails.application.config.min_donations
+    closed and donations.count < Rails.application.config.min_donations
   end
 
   def total_raised
-    if self.closed and not self.failed
-      self.donations.inject(0) { |sum, donation| sum + donation.amount}
+    if closed and not failed
+      donations.inject(0) { |sum, donation| sum + donation.amount}
     else
       0
     end
