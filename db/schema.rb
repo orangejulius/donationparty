@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130204070044) do
+ActiveRecord::Schema.define(:version => 20130204181153) do
 
   create_table "charities", :force => true do |t|
     t.string   "name"
@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(:version => 20130204070044) do
     t.string   "url"
     t.datetime "expire_time"
     t.boolean  "closed",           :default => false
-    t.boolean  "failed"
     t.integer  "max_amount"
     t.string   "winning_address1"
     t.string   "winning_address2"
