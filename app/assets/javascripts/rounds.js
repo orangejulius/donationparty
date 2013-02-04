@@ -40,6 +40,10 @@ DP.RealTime.prototype = {
     },
 
     renderTimer: function() {
+	if (this.secondsLeft <= 0) {
+            window.location.href = window.location.href;
+        }
+
         var $timer = $('.timer');
         var minutes = Math.floor(this.secondsLeft / 60);
         var seconds = this.secondsLeft % 60;
