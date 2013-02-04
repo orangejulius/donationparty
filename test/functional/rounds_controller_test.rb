@@ -2,25 +2,23 @@ require 'test_helper'
 
 class RoundsControllerTest < ActionController::TestCase
   setup do
-    @round = rounds(:one)
+    @round = Round.new
   end
 
   test "new round should be displayable" do
-    @r = Round.new
-    post :set_charity, url: @r.url,  charity: 'eff'
+    post :set_charity, url: @round.url,  charity: 'eff'
     assert_response :success
 
-    get :display, url: @r.url
+    get :display, url: @round.url
     assert_response :success
   end
 
   test "closed round displayed with closed view" do
-    @r = Round.new
-    @r.closed = true
-    @r.charity = 'eff'
-    @r.save
+    @round.closed = true
+    @round.charity = 'eff'
+    @round.save
 
-    get :display, url: @r.url
+    get :display, url: @round.url
     assert_response :success
     assert_template :closed
   end
@@ -52,8 +50,6 @@ class RoundsControllerTest < ActionController::TestCase
   end
 
   test "charity can only be set once" do
-    @round = Round.new
-
     post :set_charity, url: @round.url, charity: 'test_charity'
     assert_equal 'test_charity', assigns[:round].charity
 
