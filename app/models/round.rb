@@ -37,4 +37,8 @@ class Round < ActiveRecord::Base
     end
     return highest
   end
+
+  def failed
+    self.closed and self.donations.count < Rails.application.config.min_donations
+  end
 end
