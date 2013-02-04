@@ -100,4 +100,19 @@ class RoundTest < ActiveSupport::TestCase
 
     assert_equal false, @round.failed
   end
+  test "total_raised returns total donation amount after round closes successfully" do
+    @round = Round.create
+
+    assert_equal 0, @round.total_raised
+
+    @d1 = Donation.create(round: @round, amount: 5)
+    @d2 = Donation.create(round: @round, amount: 2)
+    @d3 = Donation.create(round: @round, amount: 9)
+
+    assert_equal 0, @round.total_raised
+
+    @round.closed = true
+
+    assert_equal 16, @round.total_raised
+  end
 end
