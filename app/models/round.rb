@@ -41,4 +41,12 @@ class Round < ActiveRecord::Base
   def failed
     self.closed and self.donations.count < Rails.application.config.min_donations
   end
+
+  def total_raised
+    if self.closed and not self.failed
+      self.donations.inject(0) { |sum, donation| sum + donation.amount}
+    else
+      0
+    end
+  end
 end
