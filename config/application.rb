@@ -66,5 +66,8 @@ module Donationparty
     config.max_donation = 10
 
     config.round_duration = 1.hour
+
+    # the minimum number of donations required for a round to finish successfully
+    config.min_donations = 3
   end
 end
