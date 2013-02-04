@@ -2,7 +2,7 @@ require 'test_helper'
 
 class RoundsControllerTest < ActionController::TestCase
   setup do
-    @round = Round.new
+    @round = Round.create
   end
 
   test "new round should be displayable" do
@@ -16,6 +16,7 @@ class RoundsControllerTest < ActionController::TestCase
 
   test "closed round displayed with closed view" do
     @round.closed = true
+    @round.charity = Charity.new
     @round.save
 
     get :display, url: @round.url

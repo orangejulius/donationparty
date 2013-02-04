@@ -5,7 +5,8 @@ class ChargeFlowTest < ActionDispatch::IntegrationTest
   #   assert true
   # end
   setup do
-    @round = rounds(:one)
+    @charity = Charity.new
+    @round = Round.create(charity: @charity)
   end
 
   test "charge and status don't show payment form after payment" do
