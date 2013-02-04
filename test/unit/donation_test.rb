@@ -19,4 +19,18 @@ class DonationTest < ActiveSupport::TestCase
 
     assert_equal Rails.application.config.gravatar_url % "aa99b351245441b8ca95d54a52d2998c", @d.gravatar_url
   end
+
+  test "donation has randomly generated secret" do
+    @donation = Donation.create
+    @donation2 = Donation.new
+
+    assert_match /^[[:xdigit:]]{32}$/, @donation.secret
+    assert_match /^[[:xdigit:]]{32}$/, @donation2.secret
+
+    assert_not_equal @donation.secret, @donation2.secret
+
+    @donation3 = Donation.find(@donation.id)
+
+    assert_equal @donation.secret, @donation3.secret
+  end
 end
