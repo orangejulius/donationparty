@@ -79,7 +79,7 @@ class RoundTest < ActiveSupport::TestCase
 
   test "charity info accessible through round" do
     @round = Round.new
-    @charity = Charity.new(name: 'Test Charity', 'test.png')
+    @charity = Charity.new(name: 'Test Charity', image_name: 'test.png')
 
     @round.charity = @charity
 
