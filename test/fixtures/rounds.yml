@@ -2,7 +2,6 @@
 
 one:
   url: MyString
-  charity: MyString
   expire_time: 2013-01-22
   closed: 
   failed: 
@@ -13,7 +12,6 @@ one:
 
 two:
   url: MyString
-  charity: MyString
   expire_time: 2013-01-22
   closed: 
   failed: 
