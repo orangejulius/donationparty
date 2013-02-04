@@ -4,7 +4,6 @@ one:
   url: MyString
   expire_time: 2013-01-22
   closed: 
-  failed: 
   max_amount: 
   winning_address1: MyString
   winning_address2: MyString
@@ -14,7 +13,6 @@ two:
   url: MyString
   expire_time: 2013-01-22
   closed: 
-  failed: 
   max_amount: 
   winning_address1: MyString
   winning_address2: MyString
