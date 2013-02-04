@@ -6,10 +6,12 @@ var DP = {
 
 DP.RealTime.prototype = {
     setup: function() {
-        this.pusher = new Pusher(DP.PUSHER_KEY);
-        this.channel = this.pusher.subscribe(DP.Round.url);
-        this.channel.bind('new:charge', _.bind(this.newCharge, this));
-        console.log(["Subscribing to real-time", this.pusher, this.channel]);
+        if (typeof Pusher == 'function') {
+		this.pusher = new Pusher(DP.PUSHER_KEY);
+		this.channel = this.pusher.subscribe(DP.Round.url);
+		this.channel.bind('new:charge', _.bind(this.newCharge, this));
+		console.log(["Subscribing to real-time", this.pusher, this.channel]);
+	}
 
         this.secondsLeft = DP.Round.secondsLeft;
         this.reloader = setInterval(_.bind(this.reloadDonations, this), 1000*60);
