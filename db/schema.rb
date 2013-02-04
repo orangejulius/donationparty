@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130124234731) do
+ActiveRecord::Schema.define(:version => 20130204070044) do
+
+  create_table "charities", :force => true do |t|
+    t.string   "name"
+    t.string   "image_name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "donations", :force => true do |t|
     t.string   "email"
@@ -27,7 +34,6 @@ ActiveRecord::Schema.define(:version => 20130124234731) do
 
   create_table "rounds", :force => true do |t|
     t.string   "url"
-    t.string   "charity"
     t.datetime "expire_time"
     t.boolean  "closed",           :default => false
     t.boolean  "failed"
@@ -35,8 +41,9 @@ ActiveRecord::Schema.define(:version => 20130124234731) do
     t.string   "winning_address1"
     t.string   "winning_address2"
     t.string   "secret_token"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.integer  "charity_id"
   end
 
 end
