@@ -11,7 +11,7 @@
 <% end %>
 <div class="boxed lead running">
   <img src="<%= asset_path @round.charity.image_name || "" %>" />
-    <h2><%= @round.charity %></h2>
+    <h2><%= @round.charity.name %></h2>
     <p>Securely donate a randomly selected amount between <strong>$1 and $10</strong>. The person who donates the most wins something cool from Amazon!</p>
 
     <div class="social">
