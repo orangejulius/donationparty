@@ -1,0 +1,11 @@
+<ul class="charities">
+<% Charity.all.each do |charity| %>
+  <li class="charity" title="<%= charity.name %>">
+  <label>
+    <input type="radio" name="charity" value="<%= charity.id %>" />
+    <img src="<%= asset_path charity.image_name %>" />
+    <span><%= charity.name %></span>
+  </label>
+  </li>
+<% end %>
+</ul>
