@@ -6,6 +6,9 @@ class Donation < ActiveRecord::Base
     if amount.nil?
       self.amount = rand(0.0..Rails.application.config.max_donation)
     end
+    if secret.nil?
+      self.secret = SecureRandom.hex(16)
+    end
     save
   end
 
