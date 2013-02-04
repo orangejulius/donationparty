@@ -76,4 +76,16 @@ class RoundTest < ActiveSupport::TestCase
 
     assert_equal d2, round.winner
   end
+
+  test "charity info accessible through round" do
+    @round = Round.new
+    @charity = Charity.new(name: 'Test Charity', 'test.png')
+
+    @round.charity = @charity
+
+    @round.save
+    @round.reload
+
+    assert_equal @charity.name, @round.charity.name
+  end
 end
