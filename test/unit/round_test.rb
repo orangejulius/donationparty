@@ -45,6 +45,13 @@ class RoundTest < ActiveSupport::TestCase
     assert_equal 0, r.seconds_left
   end
 
+  test "expired rounds automatically marked closed" do
+    @r = Round.new
+    @r.expire_time = Time.now - Rails.application.config.round_duration - 1.hours
+
+    assert_equal true, @r.closed
+  end
+
   test "winner returns nil if no donations" do
     round = Round.new
     assert_nil round.winner
