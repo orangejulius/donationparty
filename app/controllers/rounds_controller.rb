@@ -3,7 +3,7 @@ class RoundsController < ApplicationController
     @round = Round.where(url: params[:url]).first
 
     if @round.charity.nil?
-      @round.charity = params[:charity]
+      @round.charity = Charity.find(params[:charity])
       @round.save
     end
 

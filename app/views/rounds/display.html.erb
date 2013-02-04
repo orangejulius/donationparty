@@ -10,7 +10,7 @@
   DP.PUSHER_KEY = '<%= Rails.application.config.pusher_key %>';
 <% end %>
 <div class="boxed lead running">
-  <img src="<%= asset_path @round.charity + '.png' %>" />
+  <img src="<%= asset_path @round.charity.image_name || "" %>" />
     <h2><%= @round.charity %></h2>
     <p>Securely donate a randomly selected amount between <strong>$1 and $10</strong>. The person who donates the most wins something cool from Amazon!</p>
 

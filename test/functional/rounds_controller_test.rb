@@ -6,7 +6,8 @@ class RoundsControllerTest < ActionController::TestCase
   end
 
   test "new round should be displayable" do
-    post :set_charity, url: @round.url,  charity: 'eff'
+    @charity = Charity.create(name: 'Test Charity')
+    post :set_charity, url: @round.url,  charity: @charity.id
     assert_response :success
 
     get :display, url: @round.url
@@ -15,7 +16,6 @@ class RoundsControllerTest < ActionController::TestCase
 
   test "closed round displayed with closed view" do
     @round.closed = true
-    @round.charity = 'eff'
     @round.save
 
     get :display, url: @round.url
@@ -50,11 +50,13 @@ class RoundsControllerTest < ActionController::TestCase
   end
 
   test "charity can only be set once" do
-    post :set_charity, url: @round.url, charity: 'test_charity'
-    assert_equal 'test_charity', assigns[:round].charity
+    @charity = Charity.create(name: 'Test Charity')
+    @charity2 = Charity.create(name: 'Test Charity2')
+    post :set_charity, url: @round.url, charity: @charity.id
+    assert_equal @charity, assigns[:round].charity
 
-    post :set_charity, url: @round.url, charity: 'test_charity2'
-    assert_equal 'test_charity', assigns[:round].charity
+    post :set_charity, url: @round.url, charity: @charity2.id
+    assert_equal @charity, assigns[:round].charity
   end
 
   test "should get index" do
@@ -70,7 +72,7 @@ class RoundsControllerTest < ActionController::TestCase
 
   test "should create round" do
     assert_difference('Round.count') do
-      post :create, round: { charity: @round.charity, closed: @round.closed, expire_time: @round.expire_time, failed: @round.failed, max_amount: @round.max_amount, secret_token: @round.secret_token, url: @round.url, winning_address1: @round.winning_address1, winning_address2: @round.winning_address2 }
+      post :create, round: { closed: @round.closed, expire_time: @round.expire_time, failed: @round.failed, max_amount: @round.max_amount, secret_token: @round.secret_token, url: @round.url, winning_address1: @round.winning_address1, winning_address2: @round.winning_address2 }
     end
 
     assert_redirected_to round_path(assigns(:round))
@@ -87,7 +89,7 @@ class RoundsControllerTest < ActionController::TestCase
   end
 
   test "should update round" do
-    put :update, id: @round, round: { charity: @round.charity, closed: @round.closed, expire_time: @round.expire_time, failed: @round.failed, max_amount: @round.max_amount, secret_token: @round.secret_token, url: @round.url, winning_address1: @round.winning_address1, winning_address2: @round.winning_address2 }
+    put :update, id: @round, round: { closed: @round.closed, expire_time: @round.expire_time, failed: @round.failed, max_amount: @round.max_amount, secret_token: @round.secret_token, url: @round.url, winning_address1: @round.winning_address1, winning_address2: @round.winning_address2 }
     assert_redirected_to round_path(assigns(:round))
   end
 

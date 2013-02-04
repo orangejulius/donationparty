@@ -1,7 +1,8 @@
 class Round < ActiveRecord::Base
-  attr_accessible :charity, :closed, :expire_time, :failed, :max_amount, :secret_token, :url, :winning_address1, :winning_address2
+  attr_accessible :closed, :expire_time, :failed, :max_amount, :secret_token, :url, :winning_address1, :winning_address2
 
   has_many :donations
+  belongs_to :charity
 
   after_initialize do |round|
     if self.url.nil?
