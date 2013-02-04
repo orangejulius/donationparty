@@ -7,7 +7,7 @@
         <p class="DP-donation-time">Donated <%= time_ago_in_words(donation.created_at) %> ago</p>
         <p class="DP-donation-amount">
             <% if @round.closed %>
-                <%= donation.amount %>
+                $<%= donation.amount.round(2) %>
             <% else %>
                 $$$
             <% end %>
