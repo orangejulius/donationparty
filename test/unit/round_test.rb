@@ -88,4 +88,16 @@ class RoundTest < ActiveSupport::TestCase
 
     assert_equal @charity.name, @round.charity.name
   end
+
+  test "round failed if closed without enough donations" do
+    @round = Round.create(expire_time: Time.now - 1.hour)
+
+    assert_equal true, @round.failed
+
+    @d1 = Donation.create(round: @round, amount: 5)
+    @d2 = Donation.create(round: @round, amount: 2)
+    @d3 = Donation.create(round: @round, amount: 9)
+
+    assert_equal false, @round.failed
+  end
 end
