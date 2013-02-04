@@ -72,7 +72,7 @@ class RoundsControllerTest < ActionController::TestCase
 
   test "should create round" do
     assert_difference('Round.count') do
-      post :create, round: { closed: @round.closed, expire_time: @round.expire_time, failed: @round.failed, max_amount: @round.max_amount, secret_token: @round.secret_token, url: @round.url, winning_address1: @round.winning_address1, winning_address2: @round.winning_address2 }
+      post :create, round: { closed: @round.closed, expire_time: @round.expire_time, max_amount: @round.max_amount, secret_token: @round.secret_token, url: @round.url, winning_address1: @round.winning_address1, winning_address2: @round.winning_address2 }
     end
 
     assert_redirected_to round_path(assigns(:round))
@@ -89,7 +89,7 @@ class RoundsControllerTest < ActionController::TestCase
   end
 
   test "should update round" do
-    put :update, id: @round, round: { closed: @round.closed, expire_time: @round.expire_time, failed: @round.failed, max_amount: @round.max_amount, secret_token: @round.secret_token, url: @round.url, winning_address1: @round.winning_address1, winning_address2: @round.winning_address2 }
+    put :update, id: @round, round: { closed: @round.closed, expire_time: @round.expire_time, max_amount: @round.max_amount, secret_token: @round.secret_token, url: @round.url, winning_address1: @round.winning_address1, winning_address2: @round.winning_address2 }
     assert_redirected_to round_path(assigns(:round))
   end
 
