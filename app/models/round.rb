@@ -17,6 +17,13 @@ class Round < ActiveRecord::Base
       [self.expire_time - Time.now, 0].max
   end
 
+  def closed
+    if not self[:closed]
+      self[:closed] = self.expire_time < Time.now
+    end
+    self[:closed]
+  end
+
   def winner
     if self.closed == false
       return nil
