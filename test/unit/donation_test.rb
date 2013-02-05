@@ -44,4 +44,11 @@ class DonationTest < ActiveSupport::TestCase
 
     assert @donation.save
   end
+
+  test "donation.token returns public token" do
+    @donation = Donation.create(email: 'test@example.com')
+
+    assert_match /^[[:xdigit:]]{40}$/, @donation.token
+    assert_not_equal @donation.secret, @donation.token
+  end
 end
