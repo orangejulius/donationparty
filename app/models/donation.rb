@@ -17,4 +17,8 @@ class Donation < ActiveRecord::Base
   def gravatar_url
     Rails.application.config.gravatar_url % Digest::MD5.hexdigest(email)
   end
+
+  def token
+    Digest::SHA1.hexdigest(secret+email)
+  end
 end
