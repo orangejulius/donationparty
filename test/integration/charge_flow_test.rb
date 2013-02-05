@@ -1,9 +1,6 @@
 require 'test_helper'
 
 class ChargeFlowTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
   setup do
     @charity = Charity.new
     @round = Round.create(charity: @charity)
