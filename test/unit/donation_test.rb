@@ -21,7 +21,7 @@ class DonationTest < ActiveSupport::TestCase
   end
 
   test "donation has randomly generated secret" do
-    @donation = Donation.create
+    @donation = Donation.create(email: 'test@example.com')
     @donation2 = Donation.new
 
     assert_match /^[[:xdigit:]]{32}$/, @donation.secret

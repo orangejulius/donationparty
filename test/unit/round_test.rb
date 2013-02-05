@@ -64,10 +64,7 @@ class RoundTest < ActiveSupport::TestCase
     d1.amount = 4
     d1.save
 
-    d2 = Donation.new
-    d2.round = round
-    d2.amount = 5
-    d2.save
+    d2 = Donation.create(round: round, amount: 5, email: 'test@example.com')
 
     assert_nil round.winner
 
@@ -94,9 +91,9 @@ class RoundTest < ActiveSupport::TestCase
 
     assert_equal true, @round.failed
 
-    @d1 = Donation.create(round: @round, amount: 5)
-    @d2 = Donation.create(round: @round, amount: 2)
-    @d3 = Donation.create(round: @round, amount: 9)
+    @d1 = Donation.create(round: @round, amount: 5, email: 'test@example.com')
+    @d2 = Donation.create(round: @round, amount: 2, email: 'test@example.com')
+    @d3 = Donation.create(round: @round, amount: 9, email: 'test@example.com')
 
     assert_equal false, @round.failed
   end
@@ -105,9 +102,9 @@ class RoundTest < ActiveSupport::TestCase
 
     assert_equal 0, @round.total_raised
 
-    @d1 = Donation.create(round: @round, amount: 5)
-    @d2 = Donation.create(round: @round, amount: 2)
-    @d3 = Donation.create(round: @round, amount: 9)
+    @d1 = Donation.create(round: @round, amount: 5, email: 'test@example.com')
+    @d2 = Donation.create(round: @round, amount: 2, email: 'test@example.com')
+    @d3 = Donation.create(round: @round, amount: 9, email: 'test@example.com')
 
     assert_equal 0, @round.total_raised
 

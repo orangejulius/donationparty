@@ -2,6 +2,8 @@ class Donation < ActiveRecord::Base
   belongs_to :round
   attr_accessible :amount, :email, :name, :stripe_token, :round
 
+  validates :email, :presence => true
+
   after_initialize do |donation|
     if amount.nil?
       self.amount = rand(0.0..Rails.application.config.max_donation)
