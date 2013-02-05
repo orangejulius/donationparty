@@ -33,4 +33,15 @@ class DonationTest < ActiveSupport::TestCase
 
     assert_equal @donation.secret, @donation3.secret
   end
+
+  test "donation validates presence of email" do
+    @donation = Donation.new
+
+    assert !@donation.save
+
+    @donation.email = 'test@example.com'
+
+
+    assert @donation.save
+  end
 end
