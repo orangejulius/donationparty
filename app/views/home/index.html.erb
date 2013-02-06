@@ -1,0 +1,21 @@
+<%= javascript_include_tag "home" %>
+<div class="jumbotron">
+	<h1>Donation Party!</h1>
+	<p class="lead">Invite friends to donate a randomly selected amount (up to $10) to charity and one lucky winner will receive something awesome* from Amazon!</p>
+</div>
+
+</div>
+<div class="highlight">
+  <div class="container-narrow">
+
+  <form action="<%= '/round/' + @round.url %>" method="POST">
+    <%= render 'charities' %>
+
+    <div class="start-party">
+      <input type="submit" class="btn btn-large btn-success" value="Start the party!" />
+    </div>
+  </form>
+
+  </div>
+</div>
+<div class="container-narrow">

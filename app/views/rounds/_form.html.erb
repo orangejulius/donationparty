@@ -1,0 +1,53 @@
+<%= form_for(@round) do |f| %>
+  <% if @round.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@round.errors.count, "error") %> prohibited this round from being saved:</h2>
+
+      <ul>
+      <% @round.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :url %><br />
+    <%= f.text_field :url %>
+  </div>
+  <div class="field">
+    <%= f.label :charity %><br />
+    <%= f.text_field :charity %>
+  </div>
+  <div class="field">
+    <%= f.label :expire_time %><br />
+    <%= f.date_select :expire_time %>
+  </div>
+  <div class="field">
+    <%= f.label :closed %><br />
+    <%= f.text_field :closed %>
+  </div>
+  <div class="field">
+    <%= f.label :failed %><br />
+    <%= f.text_field :failed %>
+  </div>
+  <div class="field">
+    <%= f.label :max_amount %><br />
+    <%= f.text_field :max_amount %>
+  </div>
+  <div class="field">
+    <%= f.label :winning_address1 %><br />
+    <%= f.text_field :winning_address1 %>
+  </div>
+  <div class="field">
+    <%= f.label :winning_address2 %><br />
+    <%= f.text_field :winning_address2 %>
+  </div>
+  <div class="field">
+    <%= f.label :secret_token %><br />
+    <%= f.text_field :secret_token %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,39 @@
+<h1>Listing rounds</h1>
+
+<table>
+  <tr>
+    <th>Url</th>
+    <th>Charity</th>
+    <th>Expire time</th>
+    <th>Closed</th>
+    <th>Failed</th>
+    <th>Max amount</th>
+    <th>Winning address1</th>
+    <th>Winning address2</th>
+    <th>Secret token</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @rounds.each do |round| %>
+  <tr>
+    <td><%= round.url %></td>
+    <td><%= round.charity %></td>
+    <td><%= round.expire_time %></td>
+    <td><%= round.closed %></td>
+    <td><%= round.failed %></td>
+    <td><%= round.max_amount %></td>
+    <td><%= round.winning_address1 %></td>
+    <td><%= round.winning_address2 %></td>
+    <td><%= round.secret_token %></td>
+    <td><%= link_to 'Show', round %></td>
+    <td><%= link_to 'Edit', edit_round_path(round) %></td>
+    <td><%= link_to 'Destroy', round, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Round', new_round_path %>

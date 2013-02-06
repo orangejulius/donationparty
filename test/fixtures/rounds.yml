@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  url: MyString
+  expire_time: 2013-01-22
+  closed: 
+  max_amount: 
+  winning_address1: MyString
+  winning_address2: MyString
+  secret_token: MyString
+
+two:
+  url: MyString
+  expire_time: 2013-01-22
+  closed: 
+  max_amount: 
+  winning_address1: MyString
+  winning_address2: MyString
+  secret_token: MyString
