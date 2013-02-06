@@ -14,6 +14,10 @@ class RoundsController < ApplicationController
     @round = Round.where(url: params[:url]).first
 
     @donated = cookies['donated_'+@round.url]
+    if @round.winner
+      @winner = cookies['donated_'+@round.url] == @round.winner.token
+    end
+
     if @round.closed
       render :closed
     end
