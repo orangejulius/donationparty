@@ -25,7 +25,7 @@ class RoundsController < ApplicationController
     @donation = Donation.new(round: @round, email: params[:email], name: params[:name], stripe_token: params[:stripeToken])
     @donation.save
 
-    cookies['donated_'+@round.url] = 'yup'
+    cookies['donated_'+@round.url] = @donation.token
 
     render_status
   end
