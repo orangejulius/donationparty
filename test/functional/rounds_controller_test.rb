@@ -39,6 +39,7 @@ class RoundsControllerTest < ActionController::TestCase
     assert_equal 'test.email@example.com', @donation.email
     check_status_response
     assert_no_match /<form/, @response_json['payment_info_template']
+    assert_equal @donation.token, cookies['donated_'+@round.url]
   end
 
   def check_status_response
