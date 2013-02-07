@@ -83,6 +83,9 @@ class RoundsControllerTest < ActionController::TestCase
 
     post :update_address, url: @round.url, token: @round.winner.token
     assert_response :success
+
+    post :update_address, url: @round.url, token: 'invalid token'
+    assert_response 403
   end
 
   test "should get index" do
