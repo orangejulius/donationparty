@@ -57,6 +57,10 @@ class RoundsController < ApplicationController
       render :nothing => true, :status => 403 and return
     end
 
+    @round.winning_address1 = params[:address1]
+    @round.winning_address2 = params[:address2]
+    @round.save
+
     render :nothing => true
   end
 
