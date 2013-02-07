@@ -21,4 +21,15 @@ class Donation < ActiveRecord::Base
   def token
     Digest::SHA1.hexdigest(secret+email)
   end
+
+  def charge
+    cents = (amount*100).round
+
+    charge = Stripe::Charge.create(
+      :amount => cents,
+      :currency => "usd",
+      :card => stripe_token,
+      :description => email
+    )
+  end
 end
