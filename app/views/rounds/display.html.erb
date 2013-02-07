@@ -12,7 +12,7 @@
 <div class="boxed lead running">
   <img src="<%= asset_path @round.charity.image_name || "" %>" />
     <h2><%= @round.charity.name %></h2>
-    <p>Securely donate a randomly selected amount between <strong>$1 and $10</strong>. The person who donates the most wins something cool from Amazon!</p>
+    <p>Securely donate a randomly selected amount <strong>up to <%= number_to_currency(Rails.application.config.max_donation, precision: 0) %></strong>. The person who donates the most wins something cool from Amazon!</p>
 
     <div class="social">
         <label for="name">Share the party and gather more donations!</label>
