@@ -61,6 +61,30 @@ class RoundsControllerTest < ActionController::TestCase
     assert_equal @charity, assigns[:round].charity
   end
 
+  test "updating shipping request requires correct round url and donation token" do
+    @charity = Charity.create
+    @round = Round.create(charity: @charity)
+
+    Rails.application.config.min_donations.times do
+      Donation.create(round: @round, email: 'test@example.com')
+    end
+
+    @round.closed = true
+    @round.save
+
+    post :update_address
+    assert_response 403
+
+    post :update_address, url: @round.url
+    assert_response 403
+
+    post :update_address, token: @round.winner.token
+    assert_response 403
+
+    post :update_address, url: @round.url, token: @round.winner.token
+    assert_response :success
+  end
+
   test "should get index" do
     get :index
     assert_response :success
