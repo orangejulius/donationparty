@@ -4,7 +4,9 @@
 <% else %>
   <h3>Get Your Prize</h3>
   <p>You're the lucky winner! In order to ship your winnings, we need to know your address:</p>
-  <form method="POST" action="">
+  <%= form_tag("/update_address/", :method => "post") do %>
+    <%= hidden_field_tag(:token, cookies['donated_'+@round.url]) %>
+    <%= hidden_field_tag(:url, @round.url) %>
     <label for="name">Your name</label>
     <input type="text" name="name" value="<%= @round.winner.name %>" />
 
@@ -17,5 +19,5 @@
     <div class="create">
       <input type="submit" class="btn btn-success btn-large" value="Ship It!">
     </div>
-  </form>
+  <% end %>
 <% end %>
