@@ -61,7 +61,7 @@ class RoundsController < ApplicationController
     @round.winning_address2 = params[:address2]
     @round.save
 
-    render :nothing => true
+    redirect_to action: 'display', url: @round.url
   end
 
   # GET /rounds
