@@ -81,11 +81,14 @@ class RoundsControllerTest < ActionController::TestCase
     post :update_address, token: @round.winner.token
     assert_response 403
 
-    post :update_address, url: @round.url, token: @round.winner.token
-    assert_response :success
-
     post :update_address, url: @round.url, token: 'invalid token'
     assert_response 403
+
+    post :update_address, url: @round.url, token: @round.winner.token, address1: '123 a street', address2: 'sf, CA 94105'
+    assert_response :success
+    @round.reload
+    assert_equal '123 a street', @round.winning_address1
+    assert_equal 'sf, CA 94105', @round.winning_address2
   end
 
   test "should get index" do
