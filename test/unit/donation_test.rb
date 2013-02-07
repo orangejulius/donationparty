@@ -51,4 +51,20 @@ class DonationTest < ActiveSupport::TestCase
     assert_match /^[[:xdigit:]]{40}$/, @donation.token
     assert_not_equal @donation.secret, @donation.token
   end
+
+  test "donation can process charge via stripe" do
+    token = Stripe::Token.create(
+      :card => {
+      :number => "4242424242424242",
+      :exp_month => 2,
+      :exp_year => 2014,
+      :cvc => 314
+    },)
+
+    @donation = Donation.create(stripe_token: token.id)
+
+    charge = @donation.charge
+
+    assert_equal (@donation.amount*100).round, charge.amount
+  end
 end
