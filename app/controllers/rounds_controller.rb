@@ -46,6 +46,13 @@ class RoundsController < ApplicationController
     render json: { 'seconds_left' => @round.seconds_left.round, 'donations_template' => @donations, 'payment_info_template' => @payment_info }
   end
 
+  def update_address
+    if params[:url].nil? or params[:token].nil?
+      render :nothing => true, :status => 403 and return
+    end
+    render :nothing => true
+  end
+
   # GET /rounds
   # GET /rounds.json
   def index
