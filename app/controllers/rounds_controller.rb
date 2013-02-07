@@ -50,6 +50,13 @@ class RoundsController < ApplicationController
     if params[:url].nil? or params[:token].nil?
       render :nothing => true, :status => 403 and return
     end
+
+    @round = Round.where(url: params[:url]).first
+
+    if @round.winner.token != params[:token]
+      render :nothing => true, :status => 403 and return
+    end
+
     render :nothing => true
   end
 
