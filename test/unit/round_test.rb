@@ -59,12 +59,10 @@ class RoundTest < ActiveSupport::TestCase
 
   test "winner returns donation with highest amount if round finished" do
     round = Round.create
-    d1 = Donation.new
-    d1.round = round
-    d1.amount = 4
-    d1.save
 
+    d1 = Donation.create(round: round, amount: 4, email: 'test@example.com')
     d2 = Donation.create(round: round, amount: 5, email: 'test@example.com')
+    d3 = Donation.create(round: round, amount: 3, email: 'test@example.com')
 
     assert_nil round.winner
 
