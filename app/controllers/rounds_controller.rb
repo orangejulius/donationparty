@@ -27,6 +27,7 @@ class RoundsController < ApplicationController
     @round = Round.where(url: params[:round_id]).first
 
     @donation = Donation.new(round: @round, email: params[:email], name: params[:name], stripe_token: params[:stripeToken])
+    @donation.charge
     @donation.save
 
     cookies['donated_'+@round.url] = @donation.token
