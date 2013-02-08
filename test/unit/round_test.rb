@@ -112,4 +112,15 @@ class RoundTest < ActiveSupport::TestCase
 
     assert_equal 16, @round.total_raised
   end
+
+  test "winner returns nil if round failed with not enough donations" do
+    @round = Round.create
+    @donation = Donation.create(round: @round, email: 'test@example.com')
+
+    @round.closed = true
+    @round.save
+    @round.reload
+
+    assert_equal nil, @round.winner
+  end
 end
