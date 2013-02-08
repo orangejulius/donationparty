@@ -9,7 +9,14 @@ class RoundFlowTest < ActionDispatch::IntegrationTest
     donations = []
 
     users.each do |user|
-      user.post '/charge', round_id: @round.url, email: 'test@example.com', name: 'Test User'
+      token = Stripe::Token.create(
+        :card => {
+        :number => "4242424242424242",
+        :exp_month => 2,
+        :exp_year => 2014,
+        :cvc => 314
+      },)
+      user.post '/charge', round_id: @round.url, email: 'test@example.com', name: 'Test User', stripeToken: token.id
       donations.push user.assigns(:donation)
     end
 

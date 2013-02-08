@@ -11,7 +11,15 @@ class ChargeFlowTest < ActionDispatch::IntegrationTest
     @response_json = JSON.parse(@response.body)
     assert_match '<form', @response_json['payment_info_template']
 
-    post '/charge', stripeToken: 'token', round_id: @round.url, name: 'Test User', email: 'test.email@example.com'
+    token = Stripe::Token.create(
+      :card => {
+      :number => "4242424242424242",
+      :exp_month => 2,
+      :exp_year => 2014,
+      :cvc => 314
+    },)
+
+    post '/charge', stripeToken: token.id, round_id: @round.url, name: 'Test User', email: 'test.email@example.com'
     @response_json = JSON.parse(@response.body)
     assert_no_match /<form/, @response_json['payment_info_template']
 
