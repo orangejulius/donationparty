@@ -26,7 +26,7 @@ class Round < ActiveRecord::Base
   end
 
   def winner
-    if closed == false
+    if !closed or failed
       return nil
     end
     highest = nil
