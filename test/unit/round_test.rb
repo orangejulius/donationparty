@@ -17,9 +17,8 @@ class RoundTest < ActiveSupport::TestCase
   end
 
   test "url and expire_time persist on save" do
-    r = Round.new
+    r = Round.create
     url = r.url
-    r.save
 
     r2 = Round.where(url: url).first
 
