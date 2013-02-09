@@ -29,13 +29,7 @@ class Round < ActiveRecord::Base
     if !closed or failed
       return nil
     end
-    highest = nil
-    donations.each do |donation|
-      if highest.nil? or donation.amount > highest.amount
-        highest = donation
-      end
-    end
-    return highest
+    donations.max_by { |d| d.amount }
   end
 
   def failed
