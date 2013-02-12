@@ -53,18 +53,15 @@ class DonationTest < ActiveSupport::TestCase
   end
 
   test "donation can process charge via stripe" do
-    token = Stripe::Token.create(
-      :card => {
-      :number => "4242424242424242",
-      :exp_month => 2,
-      :exp_year => 2014,
-      :cvc => 314
-    },)
+    token = 'test_stripe_token'
 
-    @donation = Donation.create(stripe_token: token.id)
+    @donation = Donation.create(stripe_token: token, email: 'test.email@example.com')
+
+    stripeMock = mock('Charge')
+    stripeMock.expects(:create).with(amount: (@donation.amount*100).round, currency: 'usd', card: token, description: 'test.email@example.com')
+
+    Donation.any_instance.stubs(:chargeObject).returns(stripeMock)
 
     charge = @donation.charge
-
-    assert_equal (@donation.amount*100).round, charge.amount
   end
 end

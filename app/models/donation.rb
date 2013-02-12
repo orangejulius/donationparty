@@ -21,11 +21,17 @@ class Donation < ActiveRecord::Base
   def charge
     cents = (amount*100).round
 
-    charge = Stripe::Charge.create(
+    charge = chargeObject.create(
       :amount => cents,
       :currency => "usd",
       :card => stripe_token,
       :description => email
     )
+  end
+
+  private
+
+  def chargeObject
+    Stripe::Charge
   end
 end
