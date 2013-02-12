@@ -32,6 +32,8 @@ class RoundsController < ApplicationController
 
     cookies['donated_'+@round.url] = @donation.token
 
+    @round.notify_subscribers
+
     render_status
   end
 
