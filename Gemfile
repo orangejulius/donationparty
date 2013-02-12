@@ -28,6 +28,7 @@ gem 'less-rails'
 gem 'twitter-bootstrap-rails'
 
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'pusher'
 gem "mocha", :require => false
 
 # To use ActiveModel has_secure_password
