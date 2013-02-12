@@ -5,12 +5,8 @@ class Donation < ActiveRecord::Base
   validates :email, :presence => true
 
   after_initialize do |donation|
-    if amount.nil?
-      self.amount = rand(0.5..Rails.application.config.max_donation)
-    end
-    if secret.nil?
-      self.secret = SecureRandom.hex(16)
-    end
+    self.amount ||= rand(0.5..Rails.application.config.max_donation)
+    self.secret ||= SecureRandom.hex(16)
     save
   end
 

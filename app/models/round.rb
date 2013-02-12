@@ -5,12 +5,8 @@ class Round < ActiveRecord::Base
   belongs_to :charity
 
   after_initialize do |round|
-    if url.nil?
-      self.url = SecureRandom.hex(3)
-    end
-    if expire_time.nil?
-      self.expire_time = Time.now + Rails.application.config.round_duration
-    end
+    self.url ||= SecureRandom.hex(3)
+    self.expire_time ||= Time.now + Rails.application.config.round_duration
     save
   end
 
