@@ -121,4 +121,13 @@ class RoundTest < ActiveSupport::TestCase
 
     assert_equal nil, @round.winner
   end
+
+  test "notify subscribers triggers pusher event" do
+    @round = Round.create
+
+    pusherMock = mock('Pusher')
+    pusherMock.expects(:trigger).with(@round.url, 'new:charge')
+
+    @round.notify_subscribers(pusherMock)
+  end
 end
