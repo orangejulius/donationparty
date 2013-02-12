@@ -4,6 +4,8 @@ class ChargeFlowTest < ActionDispatch::IntegrationTest
   setup do
     @charity = Charity.new
     @round = Round.create(charity: @charity)
+
+    Round.any_instance.stubs(:notify_subscribers)
   end
 
   test "charge and status don't show payment form after payment" do

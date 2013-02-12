@@ -8,6 +8,8 @@ class RoundFlowTest < ActionDispatch::IntegrationTest
 
     Donation.any_instance.stubs(:chargeObject).returns(stripeMock)
     Donation.any_instance.stubs(:amount).returns(1)
+
+    Round.any_instance.stubs(:notify_subscribers)
   end
 
   test "can determine if user is winner in Round#display" do
