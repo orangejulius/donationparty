@@ -26,10 +26,7 @@ class Round < ActiveRecord::Base
   end
 
   def winner
-    if !closed or failed
-      return nil
-    end
-    donations.max_by { |d| d.amount }
+    donations.max_by { |d| d.amount } unless !closed or failed
   end
 
   def failed
