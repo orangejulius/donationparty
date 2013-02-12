@@ -38,7 +38,7 @@ class Round < ActiveRecord::Base
   end
 
   def notify_subscribers
-    realtime.trigger(url, 'new:charge')
+    realtime.trigger(url, 'new:charge', {})
   end
 
   def realtime
