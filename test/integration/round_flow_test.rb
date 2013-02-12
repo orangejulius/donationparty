@@ -1,6 +1,15 @@
 require 'test_helper'
 
 class RoundFlowTest < ActionDispatch::IntegrationTest
+  setup do
+    @token = 'test_stripe_token'
+    stripeMock = mock('Charge')
+    stripeMock.expects(:create).with(amount: 100, currency: 'usd', card: @token, description: 'test.email@example.com').times(3)
+
+    Donation.any_instance.stubs(:chargeObject).returns(stripeMock)
+    Donation.any_instance.stubs(:amount).returns(1)
+  end
+
   test "can determine if user is winner in Round#display" do
     @charity = Charity.create
     @round = Round.create(charity: @charity)
@@ -9,14 +18,7 @@ class RoundFlowTest < ActionDispatch::IntegrationTest
     donations = []
 
     users.each do |user|
-      token = Stripe::Token.create(
-        :card => {
-        :number => "4242424242424242",
-        :exp_month => 2,
-        :exp_year => 2014,
-        :cvc => 314
-      },)
-      user.post '/charge', round_id: @round.url, email: 'test@example.com', name: 'Test User', stripeToken: token.id
+      user.post '/charge', round_id: @round.url, email: 'test.email@example.com', name: 'Test User', stripeToken: @token
       donations.push user.assigns(:donation)
     end
 
