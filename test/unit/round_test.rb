@@ -126,7 +126,7 @@ class RoundTest < ActiveSupport::TestCase
     @round = Round.create
 
     pusherMock = mock('Pusher')
-    pusherMock.expects(:trigger).with(@round.url, 'new:charge')
+    pusherMock.expects(:trigger).with(@round.url, 'new:charge', {})
 
     Round.any_instance.stubs(:realtime).returns(pusherMock)
 
