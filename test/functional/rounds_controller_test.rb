@@ -30,27 +30,24 @@ class RoundsControllerTest < ActionController::TestCase
   end
 
   test "charge creates new donation and returns round info" do
-    token = Stripe::Token.create(
-      :card => {
-      :number => "4242424242424242",
-      :exp_month => 2,
-      :exp_year => 2014,
-      :cvc => 314
-    },)
+    token = 'test_stripe_token'
 
-    post :charge, stripeToken: token.id, round_id: @round.url, name: 'Test User', email: 'test.email@example.com'
+    stripeMock = mock('Charge')
+    stripeMock.expects(:create).with(amount: 100, currency: 'usd', card: token, description: 'test.email@example.com')
+
+    Donation.any_instance.stubs(:chargeObject).returns(stripeMock)
+    Donation.any_instance.stubs(:amount).returns(1)
+
+    post :charge, stripeToken: token, round_id: @round.url, name: 'Test User', email: 'test.email@example.com'
 
     @donation = Donation.where(round_id: @round.id).first
     assert_not_nil @donation
-    assert_equal token.id, @donation.stripe_token
+    assert_equal token, @donation.stripe_token
     assert_equal 'Test User', @donation.name
     assert_equal 'test.email@example.com', @donation.email
     check_status_response
     assert_no_match /<form/, @response_json['payment_info_template']
     assert_equal @donation.token, cookies['donated_'+@round.url]
-
-    last_charge = Stripe::Charge.all(count: 1).data[0]
-    assert_equal last_charge.amount, (@donation.amount*100).round
   end
 
   def check_status_response
