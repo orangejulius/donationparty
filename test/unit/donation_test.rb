@@ -51,4 +51,17 @@ class DonationTest < ActiveSupport::TestCase
     assert_match /^[[:xdigit:]]{40}$/, @donation.token
     assert_not_equal @donation.secret, @donation.token
   end
+
+  test "donation can process charge via stripe" do
+    token = 'test_stripe_token'
+
+    @donation = Donation.create(stripe_token: token, email: 'test.email@example.com')
+
+    stripeMock = mock('Charge')
+    stripeMock.expects(:create).with(amount: (@donation.amount*100).round, currency: 'usd', card: token, description: 'test.email@example.com')
+
+    Donation.any_instance.stubs(:chargeObject).returns(stripeMock)
+
+    charge = @donation.charge
+  end
 end

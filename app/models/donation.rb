@@ -5,12 +5,8 @@ class Donation < ActiveRecord::Base
   validates :email, :presence => true
 
   after_initialize do |donation|
-    if amount.nil?
-      self.amount = rand(0.0..Rails.application.config.max_donation)
-    end
-    if secret.nil?
-      self.secret = SecureRandom.hex(16)
-    end
+    self.amount ||= rand(0.5..Rails.application.config.max_donation)
+    self.secret ||= SecureRandom.hex(16)
     save
   end
 
@@ -20,5 +16,22 @@ class Donation < ActiveRecord::Base
 
   def token
     Digest::SHA1.hexdigest(secret+email)
+  end
+
+  def charge
+    cents = (amount*100).round
+
+    charge = chargeObject.create(
+      :amount => cents,
+      :currency => "usd",
+      :card => stripe_token,
+      :description => email
+    )
+  end
+
+  private
+
+  def chargeObject
+    Stripe::Charge
   end
 end

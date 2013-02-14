@@ -63,7 +63,7 @@ module Donationparty
 
     config.gravatar_url = 'https://www.gravatar.com/avatar/%s?d=retro'
 
-    config.max_donation = 10
+    config.max_donation = 20
 
     config.round_duration = 1.hour
 

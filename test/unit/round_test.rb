@@ -17,9 +17,8 @@ class RoundTest < ActiveSupport::TestCase
   end
 
   test "url and expire_time persist on save" do
-    r = Round.new
+    r = Round.create
     url = r.url
-    r.save
 
     r2 = Round.where(url: url).first
 
@@ -59,19 +58,20 @@ class RoundTest < ActiveSupport::TestCase
 
   test "winner returns donation with highest amount if round finished" do
     round = Round.create
-    d1 = Donation.new
-    d1.round = round
-    d1.amount = 4
-    d1.save
 
-    d2 = Donation.create(round: round, amount: 5, email: 'test@example.com')
+    donations = []
+    i = 0
+    Rails.application.config.min_donations.times do
+      donations.append Donation.create(round: round, amount: i, email: 'test@example.com')
+      i +=1
+    end
 
     assert_nil round.winner
 
     round.closed = true
     round.save
 
-    assert_equal d2, round.winner
+    assert_equal donations.last, round.winner
   end
 
   test "charity info accessible through round" do
@@ -91,25 +91,54 @@ class RoundTest < ActiveSupport::TestCase
 
     assert_equal true, @round.failed
 
-    @d1 = Donation.create(round: @round, amount: 5, email: 'test@example.com')
-    @d2 = Donation.create(round: @round, amount: 2, email: 'test@example.com')
-    @d3 = Donation.create(round: @round, amount: 9, email: 'test@example.com')
+    donations = []
+    i = 0
+    Rails.application.config.min_donations.times do
+      donations.append Donation.create(round: @round, amount: i, email: 'test@example.com')
+      i +=1
+    end
 
     assert_equal false, @round.failed
   end
+
   test "total_raised returns total donation amount after round closes successfully" do
     @round = Round.create
 
     assert_equal 0, @round.total_raised
 
-    @d1 = Donation.create(round: @round, amount: 5, email: 'test@example.com')
-    @d2 = Donation.create(round: @round, amount: 2, email: 'test@example.com')
-    @d3 = Donation.create(round: @round, amount: 9, email: 'test@example.com')
+    donations = []
+    i = 0
+    Rails.application.config.min_donations.times do
+      donations.append Donation.create(round: @round, amount: i, email: 'test@example.com')
+      i +=1
+    end
 
     assert_equal 0, @round.total_raised
 
     @round.closed = true
 
-    assert_equal 16, @round.total_raised
+    assert_equal donations.inject(0) {|sum, d| sum + d.amount}, @round.total_raised
+  end
+
+  test "winner returns nil if round failed with not enough donations" do
+    @round = Round.create
+    @donation = Donation.create(round: @round, email: 'test@example.com')
+
+    @round.closed = true
+    @round.save
+    @round.reload
+
+    assert_equal nil, @round.winner
+  end
+
+  test "notify subscribers triggers pusher event" do
+    @round = Round.create
+
+    pusherMock = mock('Pusher')
+    pusherMock.expects(:trigger).with(@round.url, 'new:charge', {})
+
+    Round.any_instance.stubs(:realtime).returns(pusherMock)
+
+    @round.notify_subscribers
   end
 end

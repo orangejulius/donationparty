@@ -30,15 +30,27 @@ class RoundsControllerTest < ActionController::TestCase
   end
 
   test "charge creates new donation and returns round info" do
-    post :charge, stripeToken: 'token', round_id: @round.url, name: 'Test User', email: 'test.email@example.com'
+    token = 'test_stripe_token'
+
+    stripeMock = mock('Charge')
+    stripeMock.expects(:create).with(amount: 100, currency: 'usd', card: token, description: 'test.email@example.com')
+
+    Donation.any_instance.stubs(:chargeObject).returns(stripeMock)
+    Donation.any_instance.stubs(:amount).returns(1)
+
+    Round.any_instance.stubs(:notify_subscribers)
+    Round.any_instance.expects(:notify_subscribers).once
+
+    post :charge, stripeToken: token, round_id: @round.url, name: 'Test User', email: 'test.email@example.com'
 
     @donation = Donation.where(round_id: @round.id).first
     assert_not_nil @donation
-    assert_equal 'token', @donation.stripe_token
+    assert_equal token, @donation.stripe_token
     assert_equal 'Test User', @donation.name
     assert_equal 'test.email@example.com', @donation.email
     check_status_response
     assert_no_match /<form/, @response_json['payment_info_template']
+    assert_equal @donation.token, cookies['donated_'+@round.url]
   end
 
   def check_status_response
@@ -58,6 +70,36 @@ class RoundsControllerTest < ActionController::TestCase
 
     post :set_charity, url: @round.url, charity: @charity2.id
     assert_equal @charity, assigns[:round].charity
+  end
+
+  test "updating shipping request requires correct round url and donation token" do
+    @charity = Charity.create
+    @round = Round.create(charity: @charity)
+
+    Rails.application.config.min_donations.times do
+      Donation.create(round: @round, email: 'test@example.com')
+    end
+
+    @round.closed = true
+    @round.save
+
+    post :update_address
+    assert_response 403
+
+    post :update_address, url: @round.url
+    assert_response 403
+
+    post :update_address, token: @round.winner.token
+    assert_response 403
+
+    post :update_address, url: @round.url, token: 'invalid token'
+    assert_response 403
+
+    post :update_address, url: @round.url, token: @round.winner.token, address1: '123 a street', address2: 'sf, CA 94105'
+    assert_redirected_to action: :display, url: @round.url
+    @round.reload
+    assert_equal '123 a street', @round.winning_address1
+    assert_equal 'sf, CA 94105', @round.winning_address2
   end
 
   test "should get index" do

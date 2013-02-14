@@ -14,6 +14,10 @@ class RoundsController < ApplicationController
     @round = Round.where(url: params[:url]).first
 
     @donated = cookies['donated_'+@round.url]
+    if @round.winner
+      @winner = cookies['donated_'+@round.url] == @round.winner.token
+    end
+
     if @round.closed
       render :closed
     end
@@ -23,9 +27,12 @@ class RoundsController < ApplicationController
     @round = Round.where(url: params[:round_id]).first
 
     @donation = Donation.new(round: @round, email: params[:email], name: params[:name], stripe_token: params[:stripeToken])
+    @donation.charge
     @donation.save
 
-    cookies['donated_'+@round.url] = 'yup'
+    cookies['donated_'+@round.url] = @donation.token
+
+    @round.notify_subscribers
 
     render_status
   end
@@ -40,6 +47,24 @@ class RoundsController < ApplicationController
     @donations = render_to_string(partial: 'donations')
     @payment_info = render_to_string(partial: 'payment_info')
     render json: { 'seconds_left' => @round.seconds_left.round, 'donations_template' => @donations, 'payment_info_template' => @payment_info }
+  end
+
+  def update_address
+    if params[:url].nil? or params[:token].nil?
+      render :nothing => true, :status => 403 and return
+    end
+
+    @round = Round.where(url: params[:url]).first
+
+    if @round.winner.token != params[:token]
+      render :nothing => true, :status => 403 and return
+    end
+
+    @round.winning_address1 = params[:address1]
+    @round.winning_address2 = params[:address2]
+    @round.save
+
+    redirect_to action: 'display', url: @round.url
   end
 
   # GET /rounds

@@ -5,12 +5,8 @@ class Round < ActiveRecord::Base
   belongs_to :charity
 
   after_initialize do |round|
-    if url.nil?
-      self.url = SecureRandom.hex(3)
-    end
-    if expire_time.nil?
-      self.expire_time = Time.now + Rails.application.config.round_duration
-    end
+    self.url ||= SecureRandom.hex(3)
+    self.expire_time ||= Time.now + Rails.application.config.round_duration
     save
   end
 
@@ -26,16 +22,7 @@ class Round < ActiveRecord::Base
   end
 
   def winner
-    if closed == false
-      return nil
-    end
-    highest = nil
-    donations.each do |donation|
-      if highest.nil? or donation.amount > highest.amount
-        highest = donation
-      end
-    end
-    return highest
+    donations.max_by { |d| d.amount } unless !closed or failed
   end
 
   def failed
@@ -48,5 +35,13 @@ class Round < ActiveRecord::Base
     else
       0
     end
+  end
+
+  def notify_subscribers
+    realtime.trigger(url, 'new:charge', {})
+  end
+
+  def realtime
+    Pusher
   end
 end

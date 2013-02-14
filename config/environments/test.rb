@@ -1,5 +1,6 @@
 Donationparty::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
+  config.pusher_app_id = 35692
   config.pusher_key = '10684b1b1c022fc27bbb'
   config.pusher_secret = 'd8b223f417ee234ad889'
 
