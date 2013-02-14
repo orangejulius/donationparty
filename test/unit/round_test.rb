@@ -60,10 +60,8 @@ class RoundTest < ActiveSupport::TestCase
     round = Round.create
 
     donations = []
-    i = 0
-    Rails.application.config.min_donations.times do
+    Rails.application.config.min_donations.times do |i|
       donations.append Donation.create(round: round, amount: i, email: 'test@example.com')
-      i +=1
     end
 
     assert_nil round.winner
@@ -92,10 +90,8 @@ class RoundTest < ActiveSupport::TestCase
     assert_equal true, @round.failed
 
     donations = []
-    i = 0
-    Rails.application.config.min_donations.times do
+    Rails.application.config.min_donations.times do |i|
       donations.append Donation.create(round: @round, amount: i, email: 'test@example.com')
-      i +=1
     end
 
     assert_equal false, @round.failed
@@ -107,10 +103,8 @@ class RoundTest < ActiveSupport::TestCase
     assert_equal 0, @round.total_raised
 
     donations = []
-    i = 0
-    Rails.application.config.min_donations.times do
+    Rails.application.config.min_donations.times do |i|
       donations.append Donation.create(round: @round, amount: i, email: 'test@example.com')
-      i +=1
     end
 
     assert_equal 0, @round.total_raised
