@@ -4,7 +4,7 @@ class RoundFlowTest < ActionDispatch::IntegrationTest
   setup do
     @token = 'test_stripe_token'
     stripeMock = mock('Charge')
-    stripeMock.expects(:create).with(amount: 100, currency: 'usd', card: @token, description: 'test.email@example.com').times(3)
+    stripeMock.expects(:create).with(amount: 100, currency: 'usd', card: @token, description: 'test.email@example.com').times(Rails.application.config.min_donations)
 
     Donation.any_instance.stubs(:chargeObject).returns(stripeMock)
     Donation.any_instance.stubs(:amount).returns(1)
@@ -16,7 +16,7 @@ class RoundFlowTest < ActionDispatch::IntegrationTest
     @charity = Charity.create
     @round = Round.create(charity: @charity)
 
-    users = (1..3).collect { open_session }
+    users = (1..Rails.application.config.min_donations).collect { open_session }
     donations = []
 
     users.each do |user|
