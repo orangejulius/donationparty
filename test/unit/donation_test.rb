@@ -58,7 +58,7 @@ class DonationTest < ActiveSupport::TestCase
     @donation = Donation.create(stripe_token: token, email: 'test.email@example.com')
 
     stripeMock = mock('Charge')
-    stripeMock.expects(:create).with(amount: (@donation.amount*100).round, currency: 'usd', card: token, description: 'test.email@example.com')
+    stripeMock.expects(:create).with(amount: @donation.cents, currency: 'usd', card: token, description: 'test.email@example.com')
 
     Donation.any_instance.stubs(:chargeObject).returns(stripeMock)
 

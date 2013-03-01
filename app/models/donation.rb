@@ -18,9 +18,11 @@ class Donation < ActiveRecord::Base
     Digest::SHA1.hexdigest(secret+email)
   end
 
-  def charge
-    cents = (amount*100).round
+  def cents
+    (amount * 100).round
+  end
 
+  def charge
     charge = chargeObject.create(
       :amount => cents,
       :currency => "usd",
