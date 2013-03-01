@@ -60,8 +60,17 @@ class RoundsController < ApplicationController
       render :nothing => true, :status => 403 and return
     end
 
-    @round.winning_address1 = params[:address1]
-    @round.winning_address2 = params[:address2]
+    address = Address.new
+    address.line1 = params[:address1]
+    address.line2 = params[:address2]
+    address.zip_code = params[:zip_code]
+    address.city = params[:city]
+    address.state = params[:state]
+    address.country = params[:country]
+
+    address.save
+
+    @round.address = address
     @round.save
 
     redirect_to action: 'display', url: @round.url

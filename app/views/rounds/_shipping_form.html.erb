@@ -1,4 +1,4 @@
-<% if @round.winning_address1 %>
+<% if @round.address %>
   <h3>Got it!</h3>
   <p>Thanks, your winnings will be sent shortly. The world is now a slightly better place thanks to you.</p>
 <% else %>
@@ -8,13 +8,25 @@
     <%= hidden_field_tag(:token, cookies['donated_'+@round.url]) %>
     <%= hidden_field_tag(:url, @round.url) %>
     <label for="name">Your name</label>
-    <input type="text" name="name" value="<%= @round.winner.name %>" />
+    <input type="text" name="name" value="" />
 
     <label for="address1">Address Line 1</label>
-    <input type="text" name="address1" value="<%= @round.winning_address1 %>" />
+    <input type="text" name="address1" value="" />
 
-    <label for="address1">Address Line 2</label>
-    <input type="text" name="address2" value="<%= @round.winning_address2 %>" />
+    <label for="address2">Address Line 2</label>
+    <input type="text" name="address2" value="" />
+
+    <label for="zip_code">Zip Code</label>
+    <input type="text" name="zip_code" value="" />
+
+    <label for="city">City</label>
+    <input type="text" name="city" value="" />
+
+    <label for="state">State</label>
+    <input type="text" name="state" value="" />
+
+    <label for="country">Country</label>
+    <input type="text" name="country" value=""/>
 
     <div class="create">
       <input type="submit" class="btn btn-success btn-large" value="Ship It!">
