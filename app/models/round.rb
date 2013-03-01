@@ -3,6 +3,7 @@ class Round < ActiveRecord::Base
 
   has_many :donations
   belongs_to :charity
+  has_one :address
 
   after_initialize do |round|
     self.url ||= SecureRandom.hex(3)
