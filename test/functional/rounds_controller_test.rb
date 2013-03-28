@@ -29,30 +29,6 @@ class RoundsControllerTest < ActionController::TestCase
     check_status_response
   end
 
-  test "charge creates new donation and returns round info" do
-    token = 'test_stripe_token'
-
-    stripeMock = mock('Charge')
-    stripeMock.expects(:create).with(amount: 100, currency: 'usd', card: token, description: 'test.email@example.com')
-
-    Donation.any_instance.stubs(:chargeObject).returns(stripeMock)
-    Donation.any_instance.stubs(:amount).returns(1)
-
-    Round.any_instance.stubs(:notify_subscribers)
-    Round.any_instance.expects(:notify_subscribers).once
-
-    post :charge, stripeToken: token, round_id: @round.url, name: 'Test User', email: 'test.email@example.com'
-
-    @donation = Donation.where(round_id: @round.id).first
-    assert_not_nil @donation
-    assert_equal token, @donation.stripe_token
-    assert_equal 'Test User', @donation.name
-    assert_equal 'test.email@example.com', @donation.email
-    check_status_response
-    assert_no_match /<form/, @response_json['payment_info_template']
-    assert_equal @donation.token, cookies['donated_'+@round.url]
-  end
-
   def check_status_response
     assert_response :success
 

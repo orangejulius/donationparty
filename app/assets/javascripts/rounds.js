@@ -101,7 +101,7 @@ DP.PaymentForm.prototype = {
         var $form = $("#payment-form");
         var data = $form.serialize();
 
-        $.post('/charge', data, function(data) {
+        $.post('/donation/create', data, function(data) {
             DP.realtime.reloadDonations(data);
         });
     }

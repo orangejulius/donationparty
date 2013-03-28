@@ -4,7 +4,7 @@
     <p>Amazing, you've taken the plunge and donated to a good cause - lets hope you win!</p>
 
 <% else %>
-  <%= form_tag('/charge', method: 'post', id: 'payment-form') do %>
+  <%= form_tag('/donation/create', id: 'payment-form') do %>
     <input type="hidden" name="round_id" value="<%= @round.url %>" />
     <span class="payment-errors text-error"></span>
     <div class="form-row">

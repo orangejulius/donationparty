@@ -7,8 +7,9 @@ Donationparty::Application.routes.draw do
   get '/round/:url' => 'rounds#display'
   post '/round/:url' => 'rounds#set_charity'
   get '/round_status/:url' => 'rounds#status'
-  post '/charge' => 'rounds#charge'
   post '/update_address/' => 'rounds#update_address'
+
+  post '/donation/create' => 'donations#create'
 
   get "home/index"
 

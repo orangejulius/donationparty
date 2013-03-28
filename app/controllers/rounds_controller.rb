@@ -23,20 +23,6 @@ class RoundsController < ApplicationController
     end
   end
 
-  def charge
-    @round = Round.where(url: params[:round_id]).first
-
-    @donation = Donation.new(round: @round, email: params[:email], name: params[:name], stripe_token: params[:stripeToken])
-    @donation.charge
-    @donation.save
-
-    cookies['donated_'+@round.url] = @donation.token
-
-    @round.notify_subscribers
-
-    render_status
-  end
-
   def status
     @round = Round.where(url: params[:url]).first
     render_status
