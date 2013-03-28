@@ -35,4 +35,5 @@ gem 'pusher'
 group :development, :test do
 	gem "test-unit"
 	gem "mocha", :require => false
+	gem "jasminerice"
 end
