@@ -32,3 +32,7 @@ gem 'twitter-bootstrap-rails'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'pusher'
 
+group :development, :test do
+	gem "test-unit"
+	gem "mocha", :require => false
+end
