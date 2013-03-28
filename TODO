@@ -1,0 +1,15 @@
+Features
+* Clearly inform how many donations are required before the round can finish on the rounds page
+  - maybe show small boxes with generic images signifying a donation that has not yet happened yet?
+* Add button to close round before it expires once enough people have donated
+* add better calls to action all around
+
+Refactoring
+* HAML/SLIM everything
+* coffeescript everything
+
+Minor/cleanup
+* Create Rounds only when first visiting round page rather than on any visit to /
+* Ensure CC expiration date default is in the future
+* Drive CC expiration date fields from data rather than hardcoding all months/years
+* Auto fill in '4242'*4 default credit card on development environments
