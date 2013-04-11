@@ -30,10 +30,13 @@ class DonationTest < ActiveSupport::TestCase
     assert_match /^[[:xdigit:]]{#{Donation.secret_length}}$/, @donation2.secret
 
     assert_not_equal @donation.secret, @donation2.secret
+  end
 
-    @donation3 = Donation.find(@donation.id)
+  test "donation secret persists across save" do
+    @donation = Donation.create(email: 'test@example.com')
+    @donation2 = Donation.find(@donation.id)
 
-    assert_equal @donation.secret, @donation3.secret
+    assert_equal @donation.secret, @donation2.secret
   end
 
   test "donation validates presence of email" do
