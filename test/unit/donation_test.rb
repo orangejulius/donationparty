@@ -2,16 +2,10 @@ require 'test_helper'
 
 class DonationTest < ActiveSupport::TestCase
   test "donation amount randomly generated on create" do
+    Donation.expects(:get_random_amount).once.returns(5)
+
     d = Donation.new
-
-    assert_not_nil d.amount
-    assert d.amount > 0
-    assert d.amount < Rails.application.config.max_donation
-    assert_not_equal d.amount.to_i, d.amount, "donation amount should not be integer (most of the time)"
-
-    d2 = Donation.new
-
-    assert_not_equal d.amount, d2.amount
+    assert_equal 5, d.amount
   end
 
   test "get_random_amount obeys app configuration" do

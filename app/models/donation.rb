@@ -8,8 +8,7 @@ class Donation < ActiveRecord::Base
   after_initialize :generate_secret
 
   def select_donation_amount
-    self.amount ||= rand(Rails.application.config.min_donation..
-                         Rails.application.config.max_donation)
+    self.amount ||= Donation::get_random_amount
   end
 
   def generate_secret
