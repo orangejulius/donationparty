@@ -2,10 +2,10 @@ require 'test_helper'
 
 class DonationTest < ActiveSupport::TestCase
   test "donation amount randomly generated on create" do
-    Donation.expects(:get_random_amount).once.returns(5)
+    mock_donation_get_random_amount
 
     d = Donation.new
-    assert_equal 5, d.amount
+    assert_equal DONATION_AMOUNT, d.amount
   end
 
   test "get_random_amount obeys app configuration" do
