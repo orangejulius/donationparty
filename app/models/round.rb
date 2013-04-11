@@ -8,8 +8,11 @@ class Round < ActiveRecord::Base
   after_initialize :generate_url
   after_initialize :setup_expire_time
 
+  # length in characters of this round's url
+  URL_LENGTH = 6
+
   def generate_url
-    self.url ||= SecureRandom.hex(3)
+    self.url ||= SecureRandom.hex(URL_LENGTH / 2)
   end
 
   def setup_expire_time

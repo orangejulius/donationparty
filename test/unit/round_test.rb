@@ -4,7 +4,7 @@ class RoundTest < ActiveSupport::TestCase
   test "newly created round has randomly generated url string" do
     r = Round.new
     assert_not_nil r.url
-    assert_match /^[[:xdigit:]]{6}$/, r.url
+    assert_match /^[[:xdigit:]]{#{Round::URL_LENGTH}}$/, r.url
 
     r2 = Round.new
     assert_not_equal r.url, r2.url
