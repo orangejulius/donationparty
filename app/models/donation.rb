@@ -4,10 +4,15 @@ class Donation < ActiveRecord::Base
 
   validates :email, :presence => true
 
-  after_initialize do |donation|
+  after_initialize :select_donation_amount
+  after_initialize :generate_secret
+
+  def select_donation_amount
     self.amount ||= rand(0.5..Rails.application.config.max_donation)
+  end
+
+  def generate_secret
     self.secret ||= SecureRandom.hex(16)
-    save
   end
 
   def gravatar_url

@@ -5,10 +5,15 @@ class Round < ActiveRecord::Base
   belongs_to :charity
   has_one :address
 
-  after_initialize do |round|
+  after_initialize :generate_url
+  after_initialize :setup_expire_time
+
+  def generate_url
     self.url ||= SecureRandom.hex(3)
+  end
+
+  def setup_expire_time
     self.expire_time ||= Time.now + Rails.application.config.round_duration
-    save
   end
 
   def seconds_left
