@@ -67,18 +67,6 @@ class RoundTest < ActiveSupport::TestCase
     assert_equal donations.last, round.winner
   end
 
-  test "charity info accessible through round" do
-    @round = Round.new
-    @charity = Charity.new(name: 'Test Charity', image_name: 'test.png')
-
-    @round.charity = @charity
-
-    @round.save
-    @round.reload
-
-    assert_equal @charity.name, @round.charity.name
-  end
-
   test "round failed if closed without enough donations" do
     @round = Round.create(expire_time: Time.now - 1.hour)
 
