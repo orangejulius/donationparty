@@ -48,6 +48,10 @@ class Round < ActiveRecord::Base
     end
   end
 
+  def success?
+    closed and not failed
+  end
+
   def notify_subscribers
     realtime.trigger(url, 'new:charge', {})
   end
