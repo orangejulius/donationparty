@@ -23,13 +23,10 @@ class DonationTest < ActiveSupport::TestCase
   end
 
   test "donation has randomly generated secret" do
-    @donation = Donation.create(email: 'test@example.com')
-    @donation2 = Donation.new
+    stub_secure_random_hex(Donation::SECRET_LENGTH_BYTES)
+    @donation = Donation.new
 
-    assert_match /^[[:xdigit:]]{#{Donation.secret_length}}$/, @donation.secret
-    assert_match /^[[:xdigit:]]{#{Donation.secret_length}}$/, @donation2.secret
-
-    assert_not_equal @donation.secret, @donation2.secret
+    assert_equal fake_random_hex(Donation.secret_length), @donation.secret
   end
 
   test "donation secret persists across save" do
