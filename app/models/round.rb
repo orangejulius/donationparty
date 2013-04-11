@@ -25,10 +25,8 @@ class Round < ActiveRecord::Base
   end
 
   def closed
-    if not self[:closed]
-      self[:closed] = expired?
-    end
-    self[:closed]
+    # expired rounds should be automatically closed
+    self[:closed] ||= expired?
   end
 
   def winner
