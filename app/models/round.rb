@@ -33,7 +33,7 @@ class Round < ActiveRecord::Base
   end
 
   def winner
-    donations.max_by { |d| d.amount } unless !closed or failed
+    donations.max_by { |d| d.amount } if success?
   end
 
   def failed
@@ -41,11 +41,7 @@ class Round < ActiveRecord::Base
   end
 
   def total_raised
-    if closed and not failed
-      donations.inject(0) { |sum, donation| sum + donation.amount}
-    else
-      0
-    end
+    success? ? donations.inject(0) { |sum, donation| sum + donation.amount} : 0
   end
 
   def success?
