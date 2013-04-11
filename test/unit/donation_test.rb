@@ -14,6 +14,14 @@ class DonationTest < ActiveSupport::TestCase
     assert_not_equal d.amount, d2.amount
   end
 
+  test "get_random_amount obeys app configuration" do
+    1000.times do
+      amount = Donation::get_random_amount
+      assert amount > Rails.application.config.min_donation
+      assert amount < Rails.application.config.max_donation
+    end
+  end
+
   test "donation can return gravatar url" do
     @d = Donation.new(email: 'test1@example.com')
 

@@ -39,6 +39,11 @@ class Donation < ActiveRecord::Base
 
   private
 
+  def self.get_random_amount
+    rand(Rails.application.config.min_donation..
+         Rails.application.config.max_donation)
+  end
+
   def chargeObject
     Stripe::Charge
   end
