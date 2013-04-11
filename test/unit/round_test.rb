@@ -16,9 +16,8 @@ class RoundTest < ActiveSupport::TestCase
 
   test "url and expire_time persist on save" do
     r = Round.create
-    url = r.url
 
-    r2 = Round.where(url: url).first
+    r2 = Round.find_by_url(r.url)
 
     assert_equal r2.url, r.url
     assert_equal r2.expire_time, r.expire_time
@@ -27,9 +26,8 @@ class RoundTest < ActiveSupport::TestCase
   test "seconds_left returns time until round expires" do
     r = Round.new
 
-    now = Time.now
     round_duration = Rails.application.config.round_duration
-    r.expire_time = now + round_duration
+    r.expire_time = Time.now + round_duration
 
     assert r.seconds_left - round_duration < 1
   end
@@ -37,8 +35,7 @@ class RoundTest < ActiveSupport::TestCase
   test "seconds_left is never negative" do
     r = Round.new
 
-    now = Time.now
-    r.expire_time = now - 2.hours
+    r.expire_time = Time.now - 2.hours
     assert_equal 0, r.seconds_left
   end
 
