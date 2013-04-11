@@ -7,12 +7,14 @@ class Donation < ActiveRecord::Base
   after_initialize :select_donation_amount
   after_initialize :generate_secret
 
+  SECRET_LENGTH_BYTES = 16
+
   def select_donation_amount
     self.amount ||= Donation::get_random_amount
   end
 
   def generate_secret
-    self.secret ||= SecureRandom.hex(16)
+    self.secret ||= SecureRandom.hex(SECRET_LENGTH_BYTES)
   end
 
   def gravatar_url
@@ -41,6 +43,10 @@ class Donation < ActiveRecord::Base
   def self.get_random_amount
     rand(Rails.application.config.min_donation..
          Rails.application.config.max_donation)
+  end
+
+  def self.secret_length
+    2*SECRET_LENGTH_BYTES
   end
 
   def chargeObject

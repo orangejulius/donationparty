@@ -26,8 +26,8 @@ class DonationTest < ActiveSupport::TestCase
     @donation = Donation.create(email: 'test@example.com')
     @donation2 = Donation.new
 
-    assert_match /^[[:xdigit:]]{32}$/, @donation.secret
-    assert_match /^[[:xdigit:]]{32}$/, @donation2.secret
+    assert_match /^[[:xdigit:]]{#{Donation.secret_length}}$/, @donation.secret
+    assert_match /^[[:xdigit:]]{#{Donation.secret_length}}$/, @donation2.secret
 
     assert_not_equal @donation.secret, @donation2.secret
 
