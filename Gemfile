@@ -36,4 +36,6 @@ group :development, :test do
 	gem "test-unit"
 	gem "mocha", :require => false
 	gem "jasminerice"
+  gem "guard"
+  gem "guard-jasmine"
 end
