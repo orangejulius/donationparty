@@ -4,7 +4,7 @@ class DonationTest < ActiveSupport::TestCase
   test "donation amount randomly generated on create" do
     mock_donation_get_random_amount
 
-    d = Donation.new
+    d = Donation.create
     assert_equal DONATION_AMOUNT, d.amount
   end
 
@@ -17,14 +17,14 @@ class DonationTest < ActiveSupport::TestCase
   end
 
   test "donation can return gravatar url" do
-    @d = Donation.new(email: 'test1@example.com')
+    @d = Donation.create(email: 'test1@example.com')
 
     assert_equal Rails.application.config.gravatar_url % "aa99b351245441b8ca95d54a52d2998c", @d.gravatar_url
   end
 
   test "donation has randomly generated secret" do
     stub_secure_random_hex(Donation::SECRET_LENGTH_BYTES)
-    @donation = Donation.new
+    @donation = Donation.create
 
     assert_equal fake_random_hex(Donation.secret_length), @donation.secret
   end
@@ -37,7 +37,7 @@ class DonationTest < ActiveSupport::TestCase
   end
 
   test "donation validates presence of email" do
-    @donation = Donation.new
+    @donation = Donation.create
 
     assert !@donation.save
 

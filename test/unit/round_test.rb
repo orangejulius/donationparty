@@ -3,13 +3,13 @@ require 'test_helper'
 class RoundTest < ActiveSupport::TestCase
   test "newly created round has randomly generated url string" do
     stub_secure_random_hex(Round::URL_LENGTH / 2)
-    r = Round.new
+    r = Round.create
 
     assert_equal fake_random_hex(Round::URL_LENGTH), r.url
   end
 
   test "newly created round has expire time of one hour" do
-    r = Round.new
+    r = Round.create
     assert_not_nil r.expire_time
     assert Time.now + 1.hours - r.expire_time < 1 # fuzzy time comparison
   end
@@ -24,7 +24,7 @@ class RoundTest < ActiveSupport::TestCase
   end
 
   test "seconds_left returns time until round expires" do
-    r = Round.new
+    r = Round.create
 
     round_duration = Rails.application.config.round_duration
     r.expire_time = Time.now + round_duration
@@ -33,21 +33,21 @@ class RoundTest < ActiveSupport::TestCase
   end
 
   test "seconds_left is never negative" do
-    r = Round.new
+    r = Round.create
 
     r.expire_time = Time.now - 2.hours
     assert_equal 0, r.seconds_left
   end
 
   test "expired rounds automatically marked closed" do
-    @r = Round.new
+    @r = Round.create
     @r.expire_time = Time.now - Rails.application.config.round_duration - 1.hours
 
     assert_equal true, @r.closed
   end
 
   test "winner returns nil if no donations" do
-    round = Round.new
+    round = Round.create
     assert_nil round.winner
   end
 
