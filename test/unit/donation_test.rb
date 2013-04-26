@@ -4,7 +4,7 @@ class DonationTest < ActiveSupport::TestCase
   test "donation amount randomly generated on create" do
     mock_donation_get_random_amount
 
-    d = Donation.create
+    d = Donation.create(email: 'test1@example.com')
     assert_equal DONATION_AMOUNT, d.amount
   end
 
@@ -24,7 +24,7 @@ class DonationTest < ActiveSupport::TestCase
 
   test "donation has randomly generated secret" do
     stub_secure_random_hex(Donation::SECRET_LENGTH_BYTES)
-    @donation = Donation.create
+    @donation = Donation.create(email: 'test1@example.com')
 
     assert_equal fake_random_hex(Donation.secret_length), @donation.secret
   end
