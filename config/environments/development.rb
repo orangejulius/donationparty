@@ -1,12 +1,5 @@
 Donationparty::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
-  config.pusher_app_id = 35692
-  config.pusher_key = '10684b1b1c022fc27bbb'
-  config.pusher_secret = 'd8b223f417ee234ad889'
-
-  config.stripe_secret = "sk_test_pqFpBoCmQXnKPUrtz8GEV1eO"
-  config.stripe_publishable = "pk_test_keQHvvSTgakPBql0xshuqR60"
-
   config.round_duration = 5.minutes
 
   # In the development environment your application's code is reloaded on

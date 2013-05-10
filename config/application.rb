@@ -70,5 +70,12 @@ module Donationparty
 
     # the minimum number of donations required for a round to finish successfully
     config.min_donations = 3
+
+    config.stripe_secret = ENV['STRIPE_SECRET']
+    config.stripe_publishable = ENV['STRIPE_PUBLISHABLE']
+
+    config.pusher_app_id = ENV['PUSHER_APP_ID']
+    config.pusher_key = ENV['PUSHER_KEY']
+    config.pusher_secret = ENV['PUSHER_SECRET']
   end
 end
