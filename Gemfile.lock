@@ -58,6 +58,9 @@ GEM
       execjs
     coffee-script-source (1.6.1)
     commonjs (0.2.6)
+    dotenv (0.7.0)
+    dotenv-rails (0.7.0)
+      dotenv (= 0.7.0)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -161,6 +164,7 @@ PLATFORMS
 DEPENDENCIES
   backbone-rails
   coffee-rails (~> 4.0.0.beta1)
+  dotenv-rails
   jquery-rails
   less-rails
   mocha
