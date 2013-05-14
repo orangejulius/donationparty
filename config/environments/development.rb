@@ -2,6 +2,9 @@ Donationparty::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
   config.round_duration = 5.minutes
 
+  # a default cc number prefilled in the pay form (for faster development only!)
+  config.default_cc = '4242 4242 4242 4242'
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.

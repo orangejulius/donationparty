@@ -12,4 +12,3 @@ Minor/cleanup
 * Create Rounds only when first visiting round page rather than on any visit to /
 * Ensure CC expiration date default is in the future
 * Drive CC expiration date fields from data rather than hardcoding all months/years
-* Auto fill in '4242'*4 default credit card on development environments

@@ -71,6 +71,8 @@ module Donationparty
     # the minimum number of donations required for a round to finish successfully
     config.min_donations = 3
 
+    config.default_cc = nil
+
     config.stripe_secret = ENV['STRIPE_SECRET']
     config.stripe_publishable = ENV['STRIPE_PUBLISHABLE']
 

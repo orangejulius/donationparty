@@ -23,7 +23,7 @@
 					<%= image_tag('visa@2x.png') %>
         </div>
         <label for="card-number">Card number</label>
-        <input type="text" size="20" autocomplete="off" class="card-number" id="card-number" />
+        <input type="text" size="20" autocomplete="off" class="card-number" id="card-number" value="<%= Rails.application.config.default_cc %>" />
     </div>
     <div class="form-row">
         <span class="span3">
