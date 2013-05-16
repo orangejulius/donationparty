@@ -1,6 +1,4 @@
 class Round < ActiveRecord::Base
-  attr_accessible :closed, :expire_time, :max_amount, :secret_token, :url, :winning_address1, :winning_address2, :charity
-
   has_many :donations
   belongs_to :charity
   has_one :address

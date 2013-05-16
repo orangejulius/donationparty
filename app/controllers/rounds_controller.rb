@@ -117,7 +117,7 @@ class RoundsController < ApplicationController
   # POST /rounds
   # POST /rounds.json
   def create
-    @round = Round.new(params[:round])
+    @round = Round.new(round_params)
 
     respond_to do |format|
       if @round.save
@@ -136,7 +136,7 @@ class RoundsController < ApplicationController
     @round = Round.find(params[:id])
 
     respond_to do |format|
-      if @round.update_attributes(params[:round])
+      if @round.update_attributes(round_params)
         format.html { redirect_to @round, notice: 'Round was successfully updated.' }
         format.json { head :no_content }
       else
@@ -156,5 +156,10 @@ class RoundsController < ApplicationController
       format.html { redirect_to rounds_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def round_params
+    params.require(:round).permit(:closed, :expire_time, :max_amount, :secret_token, :url, :winning_address1, :winning_address2)
   end
 end
