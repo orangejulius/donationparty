@@ -18,3 +18,4 @@
 //= require underscore
 //= require dp
 //= require realtime
+//= require paymentform
