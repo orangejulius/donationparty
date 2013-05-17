@@ -1,7 +1,7 @@
 class Donation < ActiveRecord::Base
   belongs_to :round
 
-  validates :email, :presence => true
+  validates :email, presence: true
 
   after_initialize :select_donation_amount
   after_initialize :generate_secret
@@ -21,7 +21,7 @@ class Donation < ActiveRecord::Base
   end
 
   def token
-    Digest::SHA1.hexdigest(secret+email)
+    Digest::SHA1.hexdigest(secret + email)
   end
 
   def cents
@@ -30,10 +30,10 @@ class Donation < ActiveRecord::Base
 
   def charge
     charge = chargeObject.create(
-      :amount => cents,
-      :currency => "usd",
-      :card => stripe_token,
-      :description => email
+      amount: cents,
+      currency: "usd",
+      card: stripe_token,
+      description: email
     )
   end
 
@@ -45,7 +45,7 @@ class Donation < ActiveRecord::Base
   end
 
   def self.secret_length
-    2*SECRET_LENGTH_BYTES
+    2 * SECRET_LENGTH_BYTES
   end
 
   def chargeObject
