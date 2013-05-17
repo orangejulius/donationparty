@@ -1,7 +1,7 @@
 $(document).ready(function() {
-    if (!DP.Round.closed) {
-        DP.realtime = new window.DP.Realtime();
-        DP.paymentform = new DP.PaymentForm();
+    if (!window.DP.Round.closed) {
+        window.DP.realtime = new window.DP.Realtime();
+        window.DP.paymentform = new window.DP.PaymentForm();
     }
 });
 
