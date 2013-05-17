@@ -1,5 +1,5 @@
 class window.DP.Realtime
-  init: ->
+  constructor: ->
     if typeof Pusher == 'function'
       @pusher = new Pusher(DP.PUSHER_KEY)
       @channel = @pusher.subscribe DP.Round.url
