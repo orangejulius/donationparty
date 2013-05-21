@@ -119,6 +119,9 @@ GEM
       sprockets-rails (~> 2.0.0.rc0)
       tilt (~> 1.3)
     signature (0.1.7)
+    slim (1.3.9)
+      temple (~> 0.6.3)
+      tilt (~> 1.3, >= 1.3.3)
     sprockets (2.9.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -128,6 +131,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
+    temple (0.6.4)
     therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
       ref
@@ -168,6 +172,7 @@ DEPENDENCIES
   rails3_serve_static_assets!
   rails_log_stdout!
   sass-rails (~> 4.0.0.rc1)
+  slim
   stripe!
   therubyracer
   twitter-bootstrap-rails
