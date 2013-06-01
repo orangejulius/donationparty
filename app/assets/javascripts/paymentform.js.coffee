@@ -20,8 +20,8 @@ class window.DP.PaymentForm
       $(".payment-errors").html(response.error.message)
     else
       form$ = $("#payment-form")
-      token = response['id']
-      form$.append("<input type='hidden' name='stripeToken' value='" + token + "' />")
+      stripe_token = response['id']
+      form$.append("<input type='hidden' name='stripe_token' value='" + stripe_token + "' />")
       this.submitForm()
 
   submitForm: ->

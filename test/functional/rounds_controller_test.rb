@@ -41,7 +41,7 @@ class RoundsControllerTest < ActionController::TestCase
     Round.any_instance.stubs(:notify_subscribers)
     Round.any_instance.expects(:notify_subscribers).once
 
-    post :charge, stripeToken: token, round_id: @round.url, name: 'Test User', email: 'test.email@example.com'
+    post :charge, stripe_token: token, round_id: @round.url, name: 'Test User', email: 'test.email@example.com'
 
     @donation = Donation.where(round_id: @round.id).first
     assert_not_nil @donation

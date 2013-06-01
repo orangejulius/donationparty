@@ -26,7 +26,7 @@ class RoundsController < ApplicationController
   def charge
     @round = Round.find_by_url(params[:round_id])
 
-    @donation = Donation.new(round: @round, email: params[:email], name: params[:name], stripe_token: params[:stripeToken])
+    @donation = Donation.new(round: @round, email: params[:email], name: params[:name], stripe_token: params[:stripe_token])
     @donation.charge
     @donation.save
 
