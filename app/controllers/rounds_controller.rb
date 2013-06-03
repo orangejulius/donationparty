@@ -1,6 +1,6 @@
 class RoundsController < ApplicationController
   def set_charity
-    @round = Round.find_by_url(params[:url])
+    @round = Round.find_by url: params[:url]
 
     if @round.charity.nil?
       @round.charity = Charity.find(params[:charity])
@@ -11,7 +11,7 @@ class RoundsController < ApplicationController
   end
 
   def display
-    @round = Round.find_by_url(params[:url])
+    @round = Round.find_by url: params[:url]
 
     @donated = cookies['donated_'+@round.url]
     if @round.winner
@@ -24,7 +24,7 @@ class RoundsController < ApplicationController
   end
 
   def charge
-    @round = Round.find_by_url(params[:round_id])
+    @round = Round.find_by url: params[:round_id]
 
     @donation = Donation.new(round: @round, email: params[:email], name: params[:name], stripe_token: params[:stripe_token])
     @donation.charge
@@ -38,7 +38,7 @@ class RoundsController < ApplicationController
   end
 
   def status
-    @round = Round.find_by_url(params[:url])
+    @round = Round.find_by url: params[:url]
     render_status
   end
 

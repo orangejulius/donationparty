@@ -18,7 +18,7 @@ class RoundTest < ActiveSupport::TestCase
 
   test "url and expire_time persist on save" do
     @r.save
-    r2 = Round.find_by_url(@r.url)
+    r2 = Round.find_by url: @r.url
 
     assert_equal r2.url, @r.url
     assert_equal r2.expire_time, @r.expire_time
