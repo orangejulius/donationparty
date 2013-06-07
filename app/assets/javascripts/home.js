@@ -1,11 +1,9 @@
 $(function(){
-
     // hide original labels and inputs
     $('.charity input[type=radio], .charity span').hide();
 
     // replace with charity images
     $('.charity img').click(function(){
-
         var $radio = $(this).prev('input:radio');
 
         $('.charity').removeClass('checked', false);
@@ -19,6 +17,7 @@ $(function(){
     });
 
     // select a random charity
-    var rand = Math.floor(Math.random()*5);
-    $('.charity img').eq(rand).click();
+    var $charities = $('.charity img');
+    var rand = Math.floor(Math.random()* $charities.length);
+    $charities.eq(rand).click();
 });
