@@ -41,8 +41,11 @@ gem "mocha", :require => false
 # Use unicorn as the app server
 gem 'unicorn'
 
-# Deploy with Capistrano
-# gem 'capistrano'
+group :development do
+  gem 'capistrano', require: false
+  gem 'rvm-capistrano', require: false
+  gem 'capistrano-unicorn', require: false
+end
 
 # To use debugger
 # gem 'debugger'
