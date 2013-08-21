@@ -5,7 +5,6 @@ gem 'rails', '4.0.0'
 
 gem 'pg'
 
-
 gem 'sass-rails', '~> 4.0.0'
 gem 'coffee-rails', '~> 4.0.0'
 
@@ -30,7 +29,6 @@ gem 'twitter-bootstrap-rails'
 
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'pusher'
-gem "mocha", :require => false
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -45,11 +43,14 @@ group :development do
   gem 'capistrano', require: false
   gem 'rvm-capistrano', require: false
   gem 'capistrano-unicorn', require: false
+	gem 'dotenv-rails'
 end
 
 # To use debugger
 # gem 'debugger'
-
-gem 'dotenv-rails', :groups => [:development, :test]
-
-gem 'jasminerice'
+#
+group :test do
+	gem 'dotenv-rails'
+	gem 'jasminerice'
+  gem "mocha", :require => false
+end
