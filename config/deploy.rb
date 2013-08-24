@@ -11,7 +11,7 @@ role :web, "donationparty.com"                          # Your HTTP server, Apac
 role :app, "donationparty.com"                          # This may be the same as your `Web` server
 role :db,  "donationparty.com", :primary => true # This is where Rails migrations will run
 
-set(:user) { 'rails' }
+set(:user) { 'donationparty' }
 set(:deploy_to) { "/home/#{user}"}
 set :use_sudo, false
 
