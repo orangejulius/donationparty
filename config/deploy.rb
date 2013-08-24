@@ -7,9 +7,9 @@ set :application, "donationparty"
 #set :repository,  "git@github.com:orangejulius/donationparty.git"
 set :repository, "https://github.com/orangejulius/donationparty.git"
 
-role :web, "server.donationparty.com"                          # Your HTTP server, Apache/etc
-role :app, "server.donationparty.com"                          # This may be the same as your `Web` server
-role :db,  "server.donationparty.com", :primary => true # This is where Rails migrations will run
+role :web, "donationparty.com"                          # Your HTTP server, Apache/etc
+role :app, "donationparty.com"                          # This may be the same as your `Web` server
+role :db,  "donationparty.com", :primary => true # This is where Rails migrations will run
 
 set(:user) { 'rails' }
 set(:deploy_to) { "/home/#{user}"}
