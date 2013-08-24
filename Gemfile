@@ -43,14 +43,14 @@ group :development do
   gem 'capistrano', require: false
   gem 'rvm-capistrano', require: false
   gem 'capistrano-unicorn', require: false
-	gem 'dotenv-rails'
+  gem 'dotenv-rails'
 end
 
 # To use debugger
 # gem 'debugger'
 #
 group :test do
-	gem 'dotenv-rails'
-	gem 'jasminerice'
+  gem 'dotenv-rails'
+  gem 'jasminerice'
   gem "mocha", :require => false
 end
