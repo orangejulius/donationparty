@@ -51,6 +51,6 @@ end
 #
 group :test do
   gem 'dotenv-rails'
-  gem 'jasminerice'
+  gem 'jasminerice', git: 'https://github.com/bradphelan/jasminerice.git'
   gem "mocha", :require => false
 end
