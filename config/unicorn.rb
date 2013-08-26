@@ -1,6 +1,7 @@
 worker_processes 2
 timeout 15
 preload_app true
+listen '127.0.0.1:8080'
 
 # Log everything to one file
 stderr_path "log/unicorn.log"
