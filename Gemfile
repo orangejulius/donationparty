@@ -50,5 +50,7 @@ group :development, :test do
   gem 'guard'
   gem 'guard-jasmine'
 
+  gem 'guard-minitest'
+
   gem "mocha", :require => false
 end
