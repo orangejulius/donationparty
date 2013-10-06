@@ -38,13 +38,12 @@ group :development do
   gem 'capistrano', require: false
   gem 'rvm-capistrano', require: false
   gem 'capistrano-unicorn', require: false
-  gem 'dotenv-rails'
 end
 
 # To use debugger
 # gem 'debugger'
 #
-group :test do
+group :development, :test do
   gem 'dotenv-rails'
   gem 'jasminerice', git: 'https://github.com/bradphelan/jasminerice.git'
   gem "mocha", :require => false
