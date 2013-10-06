@@ -46,5 +46,9 @@ end
 group :development, :test do
   gem 'dotenv-rails'
   gem 'jasminerice', git: 'https://github.com/bradphelan/jasminerice.git'
+
+  gem 'guard'
+  gem 'guard-jasmine'
+
   gem "mocha", :require => false
 end
