@@ -71,6 +71,9 @@ GEM
     execjs (1.4.0)
       multi_json (~> 1.0)
     ffi (1.9.0)
+    foreman (0.63.0)
+      dotenv (>= 0.7)
+      thor (>= 0.13.6)
     formatador (0.2.4)
     guard (1.8.3)
       formatador (>= 0.2.4)
@@ -212,6 +215,7 @@ DEPENDENCIES
   capistrano-unicorn
   coffee-rails (~> 4.0.0)
   dotenv-rails
+  foreman
   guard
   guard-jasmine
   guard-minitest
