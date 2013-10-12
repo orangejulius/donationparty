@@ -1,4 +1,12 @@
 class RoundsController < ApplicationController
+  def create
+    redirect_to root_url and return unless params[:charity]
+
+    charity = Charity.find params[:charity]
+    @round = Round.create(charity: charity)
+    redirect_to "/round/#{@round.url}"
+  end
+
   def set_charity
     @round = Round.find_by url: params[:url]
 

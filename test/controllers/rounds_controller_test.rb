@@ -2,7 +2,18 @@ require 'test_helper'
 
 class RoundsControllerTest < ActionController::TestCase
   setup do
+    @charity = Charity.first
     @round = Round.create
+  end
+
+  test "create creates new round" do
+    post :create, charity: @charity
+    assert_redirected_to "/round/#{assigns(:round).url}"
+  end
+
+  test "create redirects back home if no charity passed" do
+    post :create
+    assert_redirected_to :root
   end
 
   test "show shows round" do
