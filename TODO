@@ -10,13 +10,10 @@ UI Features
 * add better calls to action all around
 
 Refactoring
-* home controller form sends user to round#create with charity set
 * round#display moves to round#show
-* {charity|round|address|donation}#delete moves to admin api
 * HAML/SLIM everything
 * coffeescript everything
 
 Minor/cleanup
-* Create Rounds only when first visiting round page rather than on any visit to /
 * Ensure CC expiration date default is in the future
 * Drive CC expiration date fields from data rather than hardcoding all months/years
