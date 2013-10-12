@@ -41,10 +41,9 @@ group :development do
   gem 'foreman', require: false
 end
 
-# To use debugger
-# gem 'debugger'
-#
+
 group :development, :test do
+  gem 'debugger'
   gem 'dotenv-rails'
   gem 'jasminerice', git: 'https://github.com/bradphelan/jasminerice.git'
 
