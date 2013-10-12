@@ -5,21 +5,20 @@ class RoundsControllerTest < ActionController::TestCase
     @round = Round.create
   end
 
-  test "new round should be displayable" do
-    @charity = Charity.create(name: 'Test Charity')
-    post :set_charity, url: @round.url,  charity: @charity.id
-    assert_response :success
+  test "show shows round" do
+    @round.charity = Charity.create
+    @round.save
 
-    get :display, url: @round.url
+    get :show, url: @round.url
     assert_response :success
   end
 
-  test "closed round displayed with closed view" do
+  test "show uses closed view when round closed" do
     @round.closed = true
-    @round.charity = Charity.new
+    @round.charity = Charity.create
     @round.save
 
-    get :display, url: @round.url
+    get :show, url: @round.url
     assert_response :success
     assert_template :closed
   end
@@ -97,7 +96,7 @@ class RoundsControllerTest < ActionController::TestCase
 
     post :update_address, url: @round.url, token: @round.winner.token, address1: '123 a street', address2: 'Apt 23',
       zip_code: '94105', city: 'San Francisco', state: 'CA', country: 'USA'
-    assert_redirected_to action: :display, url: @round.url
+    assert_redirected_to action: :show, url: @round.url
     @round.reload
     assert_equal '123 a street', @round.address.line1
     assert_equal 'Apt 23', @round.address.line2

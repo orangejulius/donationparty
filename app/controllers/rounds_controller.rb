@@ -7,10 +7,10 @@ class RoundsController < ApplicationController
       @round.save
     end
 
-    render :display
+    render :show
   end
 
-  def display
+  def show
     @round = Round.find_by url: params[:url]
 
     @donated = cookies['donated_'+@round.url]
@@ -73,7 +73,7 @@ class RoundsController < ApplicationController
     @round.address = address
     @round.save
 
-    redirect_to action: 'display', url: @round.url
+    redirect_to action: 'show', url: @round.url
   end
 
   private
