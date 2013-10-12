@@ -13,13 +13,13 @@
   <tr>
     <td><%= charity.name %></td>
     <td><%= charity.image_name %></td>
-    <td><%= link_to 'Show', charity %></td>
-    <td><%= link_to 'Edit', edit_charity_path(charity) %></td>
-    <td><%= link_to 'Destroy', charity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', [:admin, charity] %></td>
+    <td><%= link_to 'Edit', edit_admin_charity_path(charity) %></td>
+    <td><%= link_to 'Destroy', [:admin, charity], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Charity', new_charity_path %>
+<%= link_to 'New Charity', new_admin_charity_path %>

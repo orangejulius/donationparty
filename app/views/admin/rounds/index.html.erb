@@ -27,13 +27,13 @@
     <td><%= round.winning_address1 %></td>
     <td><%= round.winning_address2 %></td>
     <td><%= round.secret_token %></td>
-    <td><%= link_to 'Show', round %></td>
-    <td><%= link_to 'Edit', edit_round_path(round) %></td>
-    <td><%= link_to 'Destroy', round, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', [:admin, round] %></td>
+    <td><%= link_to 'Edit', edit_admin_round_path(round) %></td>
+    <td><%= link_to 'Destroy', [:admin, round], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Round', new_round_path %>
+<%= link_to 'New Round', new_admin_round_path %>

@@ -1,4 +1,4 @@
-class CharitiesController < ApplicationController
+class Admin::CharitiesController < ApplicationController
   # GET /charities
   # GET /charities.json
   def index
@@ -44,7 +44,7 @@ class CharitiesController < ApplicationController
 
     respond_to do |format|
       if @charity.save
-        format.html { redirect_to @charity, notice: 'Charity was successfully created.' }
+        format.html { redirect_to [:admin, @charity], notice: 'Charity was successfully created.' }
         format.json { render json: @charity, status: :created, location: @charity }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class CharitiesController < ApplicationController
 
     respond_to do |format|
       if @charity.update_attributes(params[:charity])
-        format.html { redirect_to @charity, notice: 'Charity was successfully updated.' }
+        format.html { redirect_to [:admin, @charity], notice: 'Charity was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -76,7 +76,7 @@ class CharitiesController < ApplicationController
     @charity.destroy
 
     respond_to do |format|
-      format.html { redirect_to charities_url }
+      format.html { redirect_to admin_charities_url }
       format.json { head :no_content }
     end
   end

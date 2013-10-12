@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CharitiesControllerTest < ActionController::TestCase
+class Admin::CharitiesControllerTest < ActionController::TestCase
   setup do
     @charity = charities(:eff)
   end
@@ -21,7 +21,7 @@ class CharitiesControllerTest < ActionController::TestCase
       post :create, charity: {}
     end
 
-    assert_redirected_to charity_path(assigns(:charity))
+    assert_redirected_to admin_charity_path(assigns(:charity))
   end
 
   test "should show charity" do
@@ -36,7 +36,7 @@ class CharitiesControllerTest < ActionController::TestCase
 
   test "should update charity" do
     put :update, id: @charity, charity: {}
-    assert_redirected_to charity_path(assigns(:charity))
+    assert_redirected_to admin_charity_path(assigns(:charity))
   end
 
   test "should destroy charity" do
@@ -44,6 +44,6 @@ class CharitiesControllerTest < ActionController::TestCase
       delete :destroy, id: @charity
     end
 
-    assert_redirected_to charities_path
+    assert_redirected_to admin_charities_path
   end
 end

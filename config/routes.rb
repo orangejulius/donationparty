@@ -1,5 +1,5 @@
 Donationparty::Application.routes.draw do
-  scope "/admin" do
+  namespace :admin do
     resources :charities
     resources :rounds
   end

@@ -106,46 +106,4 @@ class RoundsControllerTest < ActionController::TestCase
     assert_equal 'CA', @round.address.state
     assert_equal 'USA', @round.address.country
   end
-
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:rounds)
-  end
-
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
-
-  test "should create round" do
-    assert_difference('Round.count') do
-      post :create, round: { closed: @round.closed, expire_time: @round.expire_time, max_amount: @round.max_amount, secret_token: @round.secret_token, url: @round.url, winning_address1: @round.winning_address1, winning_address2: @round.winning_address2 }
-    end
-
-    assert_redirected_to round_path(assigns(:round))
-  end
-
-  test "should show round" do
-    get :show, id: @round
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get :edit, id: @round
-    assert_response :success
-  end
-
-  test "should update round" do
-    put :update, id: @round, round: { closed: @round.closed, expire_time: @round.expire_time, max_amount: @round.max_amount, secret_token: @round.secret_token, url: @round.url, winning_address1: @round.winning_address1, winning_address2: @round.winning_address2 }
-    assert_redirected_to round_path(assigns(:round))
-  end
-
-  test "should destroy round" do
-    assert_difference('Round.count', -1) do
-      delete :destroy, id: @round
-    end
-
-    assert_redirected_to rounds_path
-  end
 end
