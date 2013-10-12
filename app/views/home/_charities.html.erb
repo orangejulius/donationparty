@@ -1,5 +1,5 @@
 <ul class="charities">
-<% Charity.all.each do |charity| %>
+<% @charities.each do |charity| %>
   <li class="charity" title="<%= charity.name %>">
   <label>
     <input type="radio" name="charity" value="<%= charity.id %>" />
