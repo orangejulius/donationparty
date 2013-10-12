@@ -1,9 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
-  image_name: MyString
+eff:
+  name: Electronic Frontier Foundation
+  image_name: eff.png
 
-two:
-  name: MyString
-  image_name: MyString
+childsplay:
+  name: "Child's Play"
+  image_name: childsplay.png
+
+redcross:
+  name: Red Cross
+  image_name: redcross.png
+
+oxfam:
+  name: Oxfam
+  image_name: oxfam.png
+
+greenpeace:
+  name: Greenpeace
+  image_name: greenpeace.png
