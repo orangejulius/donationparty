@@ -1,18 +1,15 @@
 class Admin::RoundsController < ApplicationController
   # GET /rounds
-  # GET /rounds.json
   def index
     @rounds = Round.all
   end
 
   # GET /rounds/1
-  # GET /rounds/1.json
   def show
     @round = Round.find(params[:id])
   end
 
   # GET /rounds/new
-  # GET /rounds/new.json
   def new
     @round = Round.new
   end
@@ -23,7 +20,6 @@ class Admin::RoundsController < ApplicationController
   end
 
   # POST /rounds
-  # POST /rounds.json
   def create
     @round = Round.new(round_params)
 
@@ -35,7 +31,6 @@ class Admin::RoundsController < ApplicationController
   end
 
   # PUT /rounds/1
-  # PUT /rounds/1.json
   def update
     @round = Round.find(params[:id])
 
@@ -47,7 +42,6 @@ class Admin::RoundsController < ApplicationController
   end
 
   # DELETE /rounds/1
-  # DELETE /rounds/1.json
   def destroy
     @round = Round.find(params[:id])
     @round.destroy
