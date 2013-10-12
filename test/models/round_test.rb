@@ -22,7 +22,9 @@ class RoundTest < ActiveSupport::TestCase
     r2 = Round.find_by url: @r.url
 
     assert_equal r2.url, @r.url
-    assert_equal r2.expire_time, @r.expire_time
+
+    #compare as integers because the db stores dates with less precision
+    assert_equal r2.expire_time.to_i, @r.expire_time.to_i
   end
 
   test "seconds_left returns time until round expires" do
