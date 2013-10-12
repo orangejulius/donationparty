@@ -72,16 +72,6 @@ class RoundsControllerTest < ActionController::TestCase
     assert_match '<h3>', @response_json['payment_info_template']
   end
 
-  test "charity can only be set once" do
-    @charity = Charity.create(name: 'Test Charity')
-    @charity2 = Charity.create(name: 'Test Charity2')
-    post :set_charity, url: @round.url, charity: @charity.id
-    assert_equal @charity, assigns[:round].charity
-
-    post :set_charity, url: @round.url, charity: @charity2.id
-    assert_equal @charity, assigns[:round].charity
-  end
-
   test "updating shipping request requires correct round url and donation token" do
     @charity = Charity.create
     @round = Round.create(charity: @charity)

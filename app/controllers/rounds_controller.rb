@@ -7,17 +7,6 @@ class RoundsController < ApplicationController
     redirect_to "/round/#{@round.url}"
   end
 
-  def set_charity
-    @round = Round.find_by url: params[:url]
-
-    if @round.charity.nil?
-      @round.charity = Charity.find(params[:charity])
-      @round.save
-    end
-
-    render :show
-  end
-
   def show
     @round = Round.find_by url: params[:url]
 
