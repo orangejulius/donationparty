@@ -6,8 +6,8 @@ class RoundCreationTest < ActionDispatch::IntegrationTest
     get '/'
     assert_response :success
 
-    post '/round/' + assigns[:round].url, charity: @charity.id
-    assert_response :success
+    post '/rounds', charity: @charity.id
+    assert_redirected_to "/round/#{assigns[:round].url}"
 
     assert_equal @charity, assigns[:round].charity
 
