@@ -1,10 +1,18 @@
-Features
+Core functionality
+* store address for shipping
+* send order to zinc
+* send charity order to firstgivig
+
+UI Features
 * Clearly inform how many donations are required before the round can finish on the rounds page
   - maybe show small boxes with generic images signifying a donation that has not yet happened yet?
 * Add button to close round before it expires once enough people have donated
 * add better calls to action all around
 
 Refactoring
+* home controller form sends user to round#create with charity set
+* round#display moves to round#show
+* {charity|round|address|donation}#delete moves to admin api
 * HAML/SLIM everything
 * coffeescript everything
 
