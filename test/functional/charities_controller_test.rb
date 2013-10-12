@@ -18,7 +18,7 @@ class CharitiesControllerTest < ActionController::TestCase
 
   test "should create charity" do
     assert_difference('Charity.count') do
-      post :create, charity: {  }
+      post :create, charity: {}
     end
 
     assert_redirected_to charity_path(assigns(:charity))
@@ -35,7 +35,7 @@ class CharitiesControllerTest < ActionController::TestCase
   end
 
   test "should update charity" do
-    put :update, id: @charity, charity: {  }
+    put :update, id: @charity, charity: {}
     assert_redirected_to charity_path(assigns(:charity))
   end
 
