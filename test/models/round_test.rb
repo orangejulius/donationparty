@@ -4,6 +4,7 @@ class RoundTest < ActiveSupport::TestCase
   def setup
     @r = Round.new
   end
+
   test "newly created round has randomly generated url string" do
     stub_secure_random_hex(Round::URL_LENGTH / 2)
     r = Round.new
