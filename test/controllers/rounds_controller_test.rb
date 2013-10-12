@@ -2,7 +2,18 @@ require 'test_helper'
 
 class RoundsControllerTest < ActionController::TestCase
   setup do
+    @charity = Charity.first
     @round = Round.create
+  end
+
+  test "create creates new round" do
+    post :create, charity: @charity
+    assert_redirected_to "/round/#{assigns(:round).url}"
+  end
+
+  test "create redirects back home if no charity passed" do
+    post :create
+    assert_redirected_to :root
   end
 
   test "show shows round" do
@@ -59,16 +70,6 @@ class RoundsControllerTest < ActionController::TestCase
     assert_equal @round.seconds_left.round, @response_json['seconds_left']
     assert_match '<li', @response_json['donations_template']
     assert_match '<h3>', @response_json['payment_info_template']
-  end
-
-  test "charity can only be set once" do
-    @charity = Charity.create(name: 'Test Charity')
-    @charity2 = Charity.create(name: 'Test Charity2')
-    post :set_charity, url: @round.url, charity: @charity.id
-    assert_equal @charity, assigns[:round].charity
-
-    post :set_charity, url: @round.url, charity: @charity2.id
-    assert_equal @charity, assigns[:round].charity
   end
 
   test "updating shipping request requires correct round url and donation token" do
