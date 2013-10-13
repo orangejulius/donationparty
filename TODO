@@ -10,9 +10,7 @@ UI Features
 * add better calls to action all around
 
 Refactoring
-* round#display moves to round#show
 * HAML/SLIM everything
-* coffeescript everything
 
 Minor/cleanup
 * Ensure CC expiration date default is in the future
