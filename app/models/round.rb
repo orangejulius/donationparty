@@ -1,7 +1,10 @@
 class Round < ActiveRecord::Base
+  extend FriendlyId
   has_many :donations
   belongs_to :charity
   has_one :address
+
+  friendly_id :url
 
   after_initialize :generate_url
   after_initialize :setup_expire_time
