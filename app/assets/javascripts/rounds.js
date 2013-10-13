@@ -1,6 +1,7 @@
+
 $(document).ready(function() {
-    if (!window.DP.Round.closed) {
-        window.DP.realtime = new window.DP.Realtime();
-        window.DP.paymentform = new window.DP.PaymentForm();
-    }
+  if (!DP.Round.closed) {
+    DP.realtime = new DP.RealTime();
+    DP.paymentform = new DP.PaymentForm();
+  }
 });
