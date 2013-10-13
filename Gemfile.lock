@@ -222,7 +222,6 @@ DEPENDENCIES
   backbone-rails
   capistrano
   capistrano-unicorn
-  coffee-rails (~> 4.0.0)
   debugger
   dotenv-rails
   foreman
