@@ -1,6 +1,6 @@
 class Api::DonationsController < ApplicationController
   def create
-    @round = Round.find_by url: params[:round_id]
+    @round = Round.friendly.find params[:round_id]
 
     @donation = Donation.new(round: @round, email: params[:email], name: params[:name], stripe_token: params[:stripe_token])
     @donation.charge
