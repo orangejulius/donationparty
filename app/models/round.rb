@@ -17,7 +17,7 @@ class Round < ActiveRecord::Base
   end
 
   def setup_expire_time
-    self.expire_time ||= Time.now + Rails.application.config.round_duration
+    self.expire_time ||= (Time.now + Rails.application.config.round_duration).change(usec: 0)
   end
 
   def seconds_left

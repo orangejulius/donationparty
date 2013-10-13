@@ -23,8 +23,11 @@ class RoundTest < ActiveSupport::TestCase
 
     assert_equal r2.url, @r.url
 
-    #compare as integers because the db stores dates with less precision
-    assert_equal r2.expire_time.to_i, @r.expire_time.to_i
+    assert_equal r2.expire_time, @r.expire_time
+  end
+
+  test "expire_time does not have miliseconds" do
+    assert @r.expire_time.change(usec: 0) == @r.expire_time, "round.expire_time has milisecond precision"
   end
 
   test "seconds_left returns time until round expires" do
