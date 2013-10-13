@@ -4,6 +4,10 @@ Donationparty::Application.routes.draw do
     resources :rounds
   end
 
+  namespace :api do
+    resources :rounds, only: [:show]
+  end
+
   resource :rounds, only: [:create]
 
   get '/round/:url' => 'rounds#show'
