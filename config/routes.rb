@@ -8,9 +8,8 @@ Donationparty::Application.routes.draw do
     resources :rounds, only: [:show]
   end
 
-  resources :round, only: [:create]
+  resources :round, only: [:create, :show]
 
-  get '/round/:url' => 'round#show'
   post '/charge' => 'round#charge'
   post '/update_address/' => 'round#update_address'
 

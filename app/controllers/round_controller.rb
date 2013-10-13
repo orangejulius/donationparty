@@ -8,7 +8,7 @@ class RoundController < ApplicationController
   end
 
   def show
-    @round = Round.find_by url: params[:url]
+    @round = Round.friendly.find params[:id]
 
     @donated = cookies['donated_'+@round.url]
     if @round.winner
@@ -61,7 +61,7 @@ class RoundController < ApplicationController
     @round.address = address
     @round.save
 
-    redirect_to action: 'show', url: @round.url
+    redirect_to action: 'show', id: @round
   end
 
   private

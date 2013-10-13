@@ -20,7 +20,7 @@ class RoundControllerTest < ActionController::TestCase
     @round.charity = Charity.create
     @round.save
 
-    get :show, url: @round.url
+    get :show, id: @round
     assert_response :success
   end
 
@@ -29,7 +29,7 @@ class RoundControllerTest < ActionController::TestCase
     @round.charity = Charity.create
     @round.save
 
-    get :show, url: @round.url
+    get :show, id: @round
     assert_response :success
     assert_template :closed
   end
@@ -88,7 +88,7 @@ class RoundControllerTest < ActionController::TestCase
 
     post :update_address, url: @round.url, token: @round.winner.token, address1: '123 a street', address2: 'Apt 23',
       zip_code: '94105', city: 'San Francisco', state: 'CA', country: 'USA'
-    assert_redirected_to action: :show, url: @round.url
+    assert_redirected_to action: :show, id: @round
     @round.reload
     assert_equal '123 a street', @round.address.line1
     assert_equal 'Apt 23', @round.address.line2
