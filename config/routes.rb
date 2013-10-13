@@ -5,9 +5,8 @@ Donationparty::Application.routes.draw do
   end
 
   namespace :api do
-    resources :rounds, only: [:show] do
-      resources :donations, only: [:create]
-    end
+    resources :donations, only: [:create]
+    resources :rounds, only: [:show]
   end
 
   resources :round, only: [:create, :show]

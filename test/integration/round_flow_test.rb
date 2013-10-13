@@ -20,7 +20,7 @@ class RoundFlowTest < ActionDispatch::IntegrationTest
     donations = []
 
     users.each do |user|
-      user.post "/api/rounds/#{@round.url}/donations", round_id: @round.url, email: 'test.email@example.com', name: 'Test User', stripe_token: @token
+      user.post "/api/donations", round_id: @round.url, email: 'test.email@example.com', name: 'Test User', stripe_token: @token
       donations.push user.assigns(:donation)
     end
 
