@@ -35,8 +35,9 @@ DP.PaymentForm.prototype = {
   submitForm: function() {
     var $form = $("#payment-form");
     var data = $form.serialize();
+    var post_url = '/api/rounds/' + DP.Round.url + '/donations'
 
-    $.post('/charge', data, function(data) {
+    $.post(post_url, data, function(data) {
       DP.realtime.reloadDonations();
     });
   }

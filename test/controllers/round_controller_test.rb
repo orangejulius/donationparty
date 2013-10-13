@@ -34,29 +34,6 @@ class RoundControllerTest < ActionController::TestCase
     assert_template :closed
   end
 
-  test "charge creates new donation and returns round info" do
-    token = 'test_stripe_token'
-
-    stripeMock = mock('Charge')
-    stripeMock.expects(:create).with(amount: 100, currency: 'usd', card: token, description: 'test.email@example.com')
-
-    Donation.any_instance.stubs(:chargeObject).returns(stripeMock)
-    Donation.any_instance.stubs(:amount).returns(1)
-
-    Round.any_instance.stubs(:notify_subscribers)
-    Round.any_instance.expects(:notify_subscribers).once
-
-    post :charge, stripe_token: token, round_id: @round.url, name: 'Test User', email: 'test.email@example.com'
-    assert_response :success
-
-    @donation = Donation.find_by round: @round
-    assert_not_nil @donation
-    assert_equal token, @donation.stripe_token
-    assert_equal 'Test User', @donation.name
-    assert_equal 'test.email@example.com', @donation.email
-    assert_equal @donation.token, cookies['donated_'+@round.url]
-  end
-
   test "updating shipping request requires correct round url and donation token" do
     @charity = Charity.create
     @round = Round.create(charity: @charity)
