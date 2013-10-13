@@ -49,7 +49,7 @@ class RoundControllerTest < ActionController::TestCase
     post :charge, stripe_token: token, round_id: @round.url, name: 'Test User', email: 'test.email@example.com'
     assert_response :success
 
-    @donation = Donation.where(round_id: @round.id).first
+    @donation = Donation.find_by round: @round
     assert_not_nil @donation
     assert_equal token, @donation.stripe_token
     assert_equal 'Test User', @donation.name

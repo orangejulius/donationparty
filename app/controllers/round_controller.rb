@@ -38,7 +38,7 @@ class RoundController < ApplicationController
       render :nothing => true, :status => 403 and return
     end
 
-    @round = Round.where(url: params[:url]).first
+    @round = Round.find_by url: params[:url]
 
     if @round.winner.token != params[:token]
       render :nothing => true, :status => 403 and return
