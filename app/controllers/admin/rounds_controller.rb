@@ -6,7 +6,7 @@ class Admin::RoundsController < ApplicationController
 
   # GET /rounds/1
   def show
-    @round = Round.find(params[:id])
+    @round = Round.friendly.find(params[:id])
   end
 
   # GET /rounds/new
@@ -16,7 +16,7 @@ class Admin::RoundsController < ApplicationController
 
   # GET /rounds/1/edit
   def edit
-    @round = Round.find(params[:id])
+    @round = Round.friendly.find(params[:id])
   end
 
   # POST /rounds
@@ -32,7 +32,7 @@ class Admin::RoundsController < ApplicationController
 
   # PUT /rounds/1
   def update
-    @round = Round.find(params[:id])
+    @round = Round.friendly.find(params[:id])
 
     if @round.update_attributes(round_params)
       redirect_to [:admin, @round], notice: 'Round was successfully updated.'
@@ -43,7 +43,7 @@ class Admin::RoundsController < ApplicationController
 
   # DELETE /rounds/1
   def destroy
-    @round = Round.find(params[:id])
+    @round = Round.friendly.find(params[:id])
     @round.destroy
 
     redirect_to admin_rounds_url
