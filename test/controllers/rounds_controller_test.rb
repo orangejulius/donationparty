@@ -34,11 +34,6 @@ class RoundsControllerTest < ActionController::TestCase
     assert_template :closed
   end
 
-  test "round status returns round and html info" do
-    get :status, url: @round.url
-    check_status_response
-  end
-
   test "charge creates new donation and returns round info" do
     token = 'test_stripe_token'
 
@@ -52,24 +47,20 @@ class RoundsControllerTest < ActionController::TestCase
     Round.any_instance.expects(:notify_subscribers).once
 
     post :charge, stripe_token: token, round_id: @round.url, name: 'Test User', email: 'test.email@example.com'
+    assert_response :success
 
     @donation = Donation.where(round_id: @round.id).first
     assert_not_nil @donation
     assert_equal token, @donation.stripe_token
     assert_equal 'Test User', @donation.name
     assert_equal 'test.email@example.com', @donation.email
-    check_status_response
-    assert_no_match /<form/, @response_json['payment_info_template']
-    assert_equal @donation.token, cookies['donated_'+@round.url]
-  end
-
-  def check_status_response
-    assert_response :success
 
     @response_json = JSON.parse(@response.body)
     assert_equal @round.seconds_left.round, @response_json['seconds_left']
     assert_match '<li', @response_json['donations_template']
     assert_match '<h3>', @response_json['payment_info_template']
+    assert_no_match /<form/, @response_json['payment_info_template']
+    assert_equal @donation.token, cookies['donated_'+@round.url]
   end
 
   test "updating shipping request requires correct round url and donation token" do

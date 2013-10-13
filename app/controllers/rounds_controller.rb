@@ -31,15 +31,6 @@ class RoundsController < ApplicationController
 
     @round.notify_subscribers
 
-    render_status
-  end
-
-  def status
-    @round = Round.find_by url: params[:url]
-    render_status
-  end
-
-  def render_status
     @donated = cookies['donated_'+@round.url]
     @donations = render_to_string(partial: 'donations')
     @payment_info = render_to_string(partial: 'payment_info')

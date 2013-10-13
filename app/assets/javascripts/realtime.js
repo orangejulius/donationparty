@@ -23,7 +23,7 @@ DP.RealTime.prototype = {
 
   reloadDonations: function(data) {
     if (!data) {
-      $.get('/round_status/' + DP.Round.url, {}, this.renderDonations);
+      $.get('/api/rounds/' + DP.Round.url, {}, this.renderDonations);
     } else {
       this.renderDonations(data);
     }

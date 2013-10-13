@@ -11,7 +11,6 @@ Donationparty::Application.routes.draw do
   resource :rounds, only: [:create]
 
   get '/round/:url' => 'rounds#show'
-  get '/round_status/:url' => 'rounds#status'
   post '/charge' => 'rounds#charge'
   post '/update_address/' => 'rounds#update_address'
 

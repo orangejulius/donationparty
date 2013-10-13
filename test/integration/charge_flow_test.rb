@@ -9,7 +9,7 @@ class ChargeFlowTest < ActionDispatch::IntegrationTest
   end
 
   test "charge and status don't show payment form after payment" do
-    get '/round_status/' + @round.url
+    get '/api/rounds/' + @round.url, format: :json
     @response_json = JSON.parse(@response.body)
     assert_match '<form', @response_json['payment_info_template']
 
@@ -25,7 +25,7 @@ class ChargeFlowTest < ActionDispatch::IntegrationTest
     @response_json = JSON.parse(@response.body)
     assert_no_match /<form/, @response_json['payment_info_template']
 
-    get '/round_status/' + @round.url
+    get '/api/rounds/' + @round.url, format: :json
     @response_json = JSON.parse(@response.body)
     assert_no_match /<form/, @response_json['payment_info_template']
 
