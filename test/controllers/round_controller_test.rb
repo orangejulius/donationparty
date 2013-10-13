@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class RoundsControllerTest < ActionController::TestCase
+class RoundControllerTest < ActionController::TestCase
   setup do
     @charity = Charity.first
     @round = Round.create

@@ -1,4 +1,4 @@
-class RoundsController < ApplicationController
+class RoundController < ApplicationController
   def create
     redirect_to root_url and return unless params[:charity]
 

@@ -8,11 +8,11 @@ Donationparty::Application.routes.draw do
     resources :rounds, only: [:show]
   end
 
-  resource :rounds, only: [:create]
+  resources :round, only: [:create]
 
-  get '/round/:url' => 'rounds#show'
-  post '/charge' => 'rounds#charge'
-  post '/update_address/' => 'rounds#update_address'
+  get '/round/:url' => 'round#show'
+  post '/charge' => 'round#charge'
+  post '/update_address/' => 'round#update_address'
 
   get "home/index"
 
