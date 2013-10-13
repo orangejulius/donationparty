@@ -27,7 +27,7 @@ DP.PaymentForm.prototype = {
     } else {
       var form$ = $("#payment-form");
       var token = response['id'];
-      form$.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
+      form$.append("<input type='hidden' name='stripe_token' value='" + token + "' />");
       this.submitForm();
     }
   },
