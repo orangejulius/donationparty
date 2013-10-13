@@ -35,13 +35,13 @@ class RoundController < ApplicationController
 
   def update_address
     if params[:url].nil? or params[:token].nil?
-      render :nothing => true, :status => 403 and return
+      render nothing: true, status: 403 and return
     end
 
     @round = Round.find_by url: params[:url]
 
     if @round.winner.token != params[:token]
-      render :nothing => true, :status => 403 and return
+      render nothing: true, status: 403 and return
     end
 
     address = Address.new
