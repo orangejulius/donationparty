@@ -4,7 +4,7 @@ class RoundController < ApplicationController
 
     charity = Charity.find params[:charity]
     @round = Round.create(charity: charity)
-    redirect_to "/round/#{@round.url}"
+    redirect_to round_path(@round)
   end
 
   def show
@@ -61,7 +61,7 @@ class RoundController < ApplicationController
     @round.address = address
     @round.save
 
-    redirect_to action: 'show', id: @round
+    redirect_to round_path(@round)
   end
 
   private
