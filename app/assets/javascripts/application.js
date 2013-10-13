@@ -16,3 +16,6 @@
 //= require backbone-rails
 //= require twitter/bootstrap
 //= require underscore
+//= require dp
+//= require paymentform
+//= require realtime
