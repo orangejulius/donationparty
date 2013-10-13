@@ -37,7 +37,7 @@ DP.PaymentForm.prototype = {
     var data = $form.serialize();
 
     $.post('/charge', data, function(data) {
-      DP.realtime.reloadDonations(data);
+      DP.realtime.reloadDonations();
     });
   }
 };
