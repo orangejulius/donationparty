@@ -22,8 +22,7 @@ class ChargeFlowTest < ActionDispatch::IntegrationTest
     Donation.any_instance.stubs(:amount).returns(1)
 
     post '/charge', stripe_token: token, round_id: @round.url, name: 'Test User', email: 'test.email@example.com'
-    @response_json = JSON.parse(@response.body)
-    assert_no_match /<form/, @response_json['payment_info_template']
+    assert_response :ok
 
     get '/api/rounds/' + @round.url, format: :json
     @response_json = JSON.parse(@response.body)

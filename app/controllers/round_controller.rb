@@ -30,11 +30,7 @@ class RoundController < ApplicationController
     cookies['donated_'+@round.url] = @donation.token
 
     @round.notify_subscribers
-
-    @donated = cookies['donated_'+@round.url]
-    @donations = render_to_string(partial: 'donations')
-    @payment_info = render_to_string(partial: 'payment_info')
-    render json: { 'seconds_left' => @round.seconds_left.round, 'donations_template' => @donations, 'payment_info_template' => @payment_info }
+    render status: :ok, nothing: true
   end
 
   def update_address

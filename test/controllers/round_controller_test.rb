@@ -54,12 +54,6 @@ class RoundControllerTest < ActionController::TestCase
     assert_equal token, @donation.stripe_token
     assert_equal 'Test User', @donation.name
     assert_equal 'test.email@example.com', @donation.email
-
-    @response_json = JSON.parse(@response.body)
-    assert_equal @round.seconds_left.round, @response_json['seconds_left']
-    assert_match '<li', @response_json['donations_template']
-    assert_match '<h3>', @response_json['payment_info_template']
-    assert_no_match /<form/, @response_json['payment_info_template']
     assert_equal @donation.token, cookies['donated_'+@round.url]
   end
 
