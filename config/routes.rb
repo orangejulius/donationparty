@@ -4,12 +4,14 @@ Donationparty::Application.routes.draw do
     resources :rounds
   end
 
-  resource :rounds, only: [:create]
+  namespace :api do
+    resources :donations, only: [:create]
+    resources :rounds, only: [:show]
+  end
 
-  get '/round/:url' => 'rounds#show'
-  get '/round_status/:url' => 'rounds#status'
-  post '/charge' => 'rounds#charge'
-  post '/update_address/' => 'rounds#update_address'
+  resources :round, only: [:create, :show]
+
+  post '/update_address/' => 'round#update_address'
 
   get "home/index"
 

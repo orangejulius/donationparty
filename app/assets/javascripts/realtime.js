@@ -21,12 +21,8 @@ DP.RealTime.prototype = {
     this.reloadDonations();
   },
 
-  reloadDonations: function(data) {
-    if (!data) {
-      $.get('/round_status/' + DP.Round.url, {}, this.renderDonations);
-    } else {
-      this.renderDonations(data);
-    }
+  reloadDonations: function() {
+    $.get('/api/rounds/' + DP.Round.url, {}, this.renderDonations);
   },
 
   renderDonations: function(data) {

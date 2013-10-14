@@ -13,14 +13,14 @@ class RoundFlowTest < ActionDispatch::IntegrationTest
   end
 
   test "can determine if user is winner in Round#display" do
-    @charity = Charity.create
+    @charity = Charity.first
     @round = Round.create(charity: @charity)
 
     users = (1..Rails.application.config.min_donations).collect { open_session }
     donations = []
 
     users.each do |user|
-      user.post '/charge', round_id: @round.url, email: 'test.email@example.com', name: 'Test User', stripe_token: @token
+      user.post "/api/donations", {donation: {round_id: @round.id, email: 'test.email@example.com', name: 'Test User', stripe_token: @token}}
       donations.push user.assigns(:donation)
     end
 
