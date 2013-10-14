@@ -16,24 +16,18 @@ class RoundFlowTest < ActionDispatch::IntegrationTest
     @charity = Charity.first
     @round = Round.create(charity: @charity)
 
-    users = (1..Rails.application.config.min_donations).collect { open_session }
-    donations = []
+    users = (1..Rails.application.config.min_donations).map { open_session }
 
-    users.each do |user|
+    donations = users.map do |user|
       user.post "/api/donations", {donation: {round_id: @round.id, email: 'test.email@example.com', name: 'Test User', stripe_token: @token}}
-      donations.push user.assigns(:donation)
+      user.assigns(:donation)
     end
 
-    @round.closed = true
-    @round.save
+    @round.update_attribute(:closed, true)
 
     users.each_with_index do |user, i|
       user.get '/round/'+@round.url
-      if @round.winner == donations[i]
-        assert_equal true, user.assigns(:winner)
-      else
-        assert_equal false, user.assigns(:winner)
-      end
+      assert_equal @round.winner == donations[i], user.assigns(:winner)
     end
   end
 end
