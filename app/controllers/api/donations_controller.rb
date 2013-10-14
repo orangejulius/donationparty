@@ -1,14 +1,17 @@
 class Api::DonationsController < ApplicationController
   def create
-    @round = Round.friendly.find params[:round_id]
-
-    @donation = Donation.new(round: @round, email: params[:email], name: params[:name], stripe_token: params[:stripe_token])
+    @donation = Donation.new donation_params
     @donation.charge
     @donation.save
 
-    cookies['donated_'+@round.url] = @donation.token
+    cookies['donated_'+@donation.round.url] = @donation.token
 
-    @round.notify_subscribers
+    @donation.round.notify_subscribers
     render status: :ok, nothing: true
+  end
+
+  private
+  def donation_params
+    params.require(:donation).permit(:name, :email, :stripe_token, :round_id)
   end
 end

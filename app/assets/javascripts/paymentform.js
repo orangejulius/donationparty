@@ -27,7 +27,7 @@ DP.PaymentForm.prototype = {
     } else {
       var form$ = $("#payment-form");
       var token = response['id'];
-      form$.append("<input type='hidden' name='stripe_token' value='" + token + "' />");
+      form$.append("<input type='hidden' name='donation[stripe_token]' value='" + token + "' />");
       this.submitForm();
     }
   },
@@ -35,7 +35,7 @@ DP.PaymentForm.prototype = {
   submitForm: function() {
     var $form = $("#payment-form");
     var data = $form.serialize();
-    var post_url = '/api/rounds/' + DP.Round.url + '/donations'
+    var post_url = '/api/donations'
 
     $.post(post_url, data, function(data) {
       DP.realtime.reloadDonations();

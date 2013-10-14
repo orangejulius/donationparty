@@ -4,16 +4,16 @@
     <p>Amazing, you've taken the plunge and donated to a good cause - lets hope you win!</p>
 
 <% else %>
-  <%= form_tag('/charge', method: 'post', id: 'payment-form') do %>
-    <input type="hidden" name="round_id" value="<%= @round.url %>" />
+  <%= form_tag('/api/donations', method: 'post', id: 'payment-form') do %>
+    <input type="hidden" name="donation[round_id]" value="<%= @round.id %>" />
     <span class="payment-errors text-error"></span>
     <div class="form-row">
         <label for="donator-name">Your name</label>
-        <input type="text" name="name" id="donator-name" />
+        <input type="text" name="donation[name]" id="donator-name" />
     </div>
     <div class="form-row">
         <label for="donator-email">Your email</label>
-        <input type="text" name="email" id="donator-email" />
+        <input type="text" name="donation[email]" id="donator-email" />
     </div>
     <div class="form-row">
         <div class="creditcards">
