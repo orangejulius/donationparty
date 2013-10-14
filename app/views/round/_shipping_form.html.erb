@@ -4,29 +4,26 @@
 <% else %>
   <h3>Get Your Prize</h3>
   <p>You're the lucky winner! In order to ship your winnings, we need to know your address:</p>
-  <%= form_tag("/update_address/", :method => "post") do %>
-    <%= hidden_field_tag(:token, cookies['donated_'+@round.url]) %>
-    <%= hidden_field_tag(:url, @round.url) %>
-    <label for="name">Your name</label>
-    <input type="text" name="name" value="" />
+  <%= form_tag("/api/addresses/", :method => "post") do %>
+    <%= hidden_field_tag(:round_token, cookies['donated_'+@round.url]) %>
+    <%= hidden_field_tag('address[round_id]', @round.id) %>
+    <label for="address[line1]">Address Line 1</label>
+    <input type="text" name="address[line1]" value="" />
 
-    <label for="address1">Address Line 1</label>
-    <input type="text" name="address1" value="" />
+    <label for="address[line2]">Address Line 2</label>
+    <input type="text" name="address[line2]" value="" />
 
-    <label for="address2">Address Line 2</label>
-    <input type="text" name="address2" value="" />
+    <label for="address[zip_code]">Zip Code</label>
+    <input type="text" name="address[zip_code]" value="" />
 
-    <label for="zip_code">Zip Code</label>
-    <input type="text" name="zip_code" value="" />
+    <label for="address[city]">City</label>
+    <input type="text" name="address[city]" value="" />
 
-    <label for="city">City</label>
-    <input type="text" name="city" value="" />
+    <label for="address[state]">State</label>
+    <input type="text" name="address[state]" value="" />
 
-    <label for="state">State</label>
-    <input type="text" name="state" value="" />
-
-    <label for="country">Country</label>
-    <input type="text" name="country" value=""/>
+    <label for="address[country]">Country</label>
+    <input type="text" name="address[country]" value=""/>
 
     <div class="create">
       <input type="submit" class="btn btn-success btn-large" value="Ship It!">
