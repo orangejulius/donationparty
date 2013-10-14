@@ -33,15 +33,17 @@ class Api::AddressesControllerTest < ActionController::TestCase
   end
 
   test "updating shipping request requires correct round url and donation token" do
-    post :create, url: @round.url, token: @round.winner.token, line1: '123 a street', line2: 'Apt 23',
-      zip_code: '94105', city: 'San Francisco', state: 'CA', country: 'USA'
+    @address = Address.new(line1: '123 a street',
+                           line2: 'Apt 23',
+                           zip_code: '94105',
+                           city: 'San Francisco',
+                           state: 'CA',
+                           country: 'USA',
+                           round_id: @round.id )
+
+    post :create, {address: @address.attributes, round_token: @round.winner.token}
     assert_redirected_to round_path(@round)
-    @round.reload
-    assert_equal '123 a street', @round.address.line1
-    assert_equal 'Apt 23', @round.address.line2
-    assert_equal '94105', @round.address.zip_code
-    assert_equal 'San Francisco', @round.address.city
-    assert_equal 'CA', @round.address.state
-    assert_equal 'USA', @round.address.country
+
+    assert @address.identical? assigns(:address)
   end
 end
