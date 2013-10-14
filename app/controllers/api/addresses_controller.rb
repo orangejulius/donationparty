@@ -11,8 +11,8 @@ class Api::AddressesController < ApplicationController
     end
 
     address = Address.new
-    address.line1 = params[:address1]
-    address.line2 = params[:address2]
+    address.line1 = params[:line1]
+    address.line2 = params[:line2]
     address.zip_code = params[:zip_code]
     address.city = params[:city]
     address.state = params[:state]

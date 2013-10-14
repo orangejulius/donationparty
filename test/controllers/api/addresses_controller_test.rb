@@ -33,7 +33,7 @@ class Api::AddressesControllerTest < ActionController::TestCase
   end
 
   test "updating shipping request requires correct round url and donation token" do
-    post :create, url: @round.url, token: @round.winner.token, address1: '123 a street', address2: 'Apt 23',
+    post :create, url: @round.url, token: @round.winner.token, line1: '123 a street', line2: 'Apt 23',
       zip_code: '94105', city: 'San Francisco', state: 'CA', country: 'USA'
     assert_redirected_to round_path(@round)
     @round.reload
