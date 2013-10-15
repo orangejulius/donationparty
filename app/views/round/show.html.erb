@@ -4,9 +4,9 @@
 <%= javascript_tag do %>
   window.DP.Round = {
     'url': "<%= j @round.url %>",
-    'closed': <%= @round.closed %>
+    'closed': <%= @round.closed %>,
+    'secondsLeft': <%= @round.seconds_left %>,
   };
-  window.DP.Round.secondsLeft = '<%= @round.seconds_left.round %>';
   window.DP.PUSHER_KEY = '<%= Rails.application.config.pusher_key %>';
 <% end %>
 <div class="boxed lead running">
