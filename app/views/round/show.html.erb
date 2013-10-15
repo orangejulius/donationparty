@@ -2,11 +2,7 @@
 <%= javascript_include_tag 'https://d3dy5gmtp8yhk7.cloudfront.net/1.12/pusher.min.js' %>
 <%= javascript_include_tag "rounds" %>
 <%= javascript_tag do %>
-  window.DP.Round = {
-    'url': "<%= j @round.url %>",
-    'closed': <%= @round.closed %>,
-    'seconds_left': <%= @round.seconds_left %>,
-  };
+  window.DP.Round = <%= raw render partial: 'api/rounds/round', formats: [:json] %>
   window.DP.PUSHER_KEY = '<%= Rails.application.config.pusher_key %>';
 <% end %>
 <div class="boxed lead running">
