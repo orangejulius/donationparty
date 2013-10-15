@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130301012530) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20131015054149) do
 
   create_table "addresses", force: true do |t|
     t.string   "line1"
@@ -51,13 +48,11 @@ ActiveRecord::Schema.define(version: 20130301012530) do
   create_table "rounds", force: true do |t|
     t.string   "url"
     t.datetime "expire_time"
-    t.boolean  "closed",           default: false
+    t.boolean  "closed",       default: false
     t.integer  "max_amount"
-    t.string   "winning_address1"
-    t.string   "winning_address2"
     t.string   "secret_token"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "charity_id"
     t.integer  "address_id"
   end

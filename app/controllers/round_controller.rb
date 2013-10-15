@@ -22,6 +22,6 @@ class RoundController < ApplicationController
 
   private
   def round_params
-    params.require(:round).permit(:closed, :expire_time, :max_amount, :secret_token, :url, :winning_address1, :winning_address2)
+    params.require(:round).permit(:closed, :expire_time, :max_amount, :secret_token, :url)
   end
 end
