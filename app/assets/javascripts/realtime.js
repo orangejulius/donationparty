@@ -12,7 +12,7 @@ DP.RealTime.prototype = {
     }
 
     this.reloader = setInterval(_.bind(this.reloadDonations, this), 1000*60);
-    this.timer = setInterval(_.bind(this.renderTimer, this), 1000*1);
+    this.timer = setInterval(_.bind(this.renderTimer, this), 100);
   },
 
   newCharge: function() {
