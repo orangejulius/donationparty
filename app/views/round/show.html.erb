@@ -5,7 +5,7 @@
   window.DP.Round = {
     'url': "<%= j @round.url %>",
     'closed': <%= @round.closed %>,
-    'secondsLeft': <%= @round.seconds_left %>,
+    'seconds_left': <%= @round.seconds_left %>,
   };
   window.DP.PUSHER_KEY = '<%= Rails.application.config.pusher_key %>';
 <% end %>

@@ -11,7 +11,7 @@ DP.RealTime.prototype = {
       console.log(["Subscribing to real-time", this.pusher, this.channel]);
     }
 
-    this.secondsLeft = DP.Round.secondsLeft;
+    this.seconds_left = DP.Round.seconds_left;
     this.reloader = setInterval(_.bind(this.reloadDonations, this), 1000*60);
     this.timer = setInterval(_.bind(this.renderTimer, this), 1000*1);
   },
@@ -29,22 +29,22 @@ DP.RealTime.prototype = {
     console.log(["Round status", data]);
     $('.donations').html(data.donations_template);
     $('.payment-info').html(data.payment_info_template);
-    this.secondsLeft = data.seconds_left;
+    this.seconds_left = data.seconds_left;
     if (data.closed) {
       window.location.href = window.location.href;
     }
   },
 
   renderTimer: function() {
-    if (this.secondsLeft <= 0) {
+    if (this.seconds_left <= 0) {
       window.location.href = window.location.href;
     }
 
     var $timer = $('.timer');
-    var minutes = Math.floor(this.secondsLeft / 60);
-    var seconds = this.secondsLeft % 60;
+    var minutes = Math.floor(this.seconds_left / 60);
+    var seconds = this.seconds_left % 60;
     if (seconds <= 9) seconds = "0" + seconds;
     $timer.html(minutes + ":" + seconds + " <span>time left</span>");
-    this.secondsLeft -= 1;
+    this.seconds_left -= 1;
   }
 };
