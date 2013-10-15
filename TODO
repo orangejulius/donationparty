@@ -18,7 +18,7 @@ UI Features
 
 Refactoring
 * HAML/SLIM everything
-* Switch from seconds left
+* Switch from seconds left to using expire_time
 
 Minor/cleanup
 * Ensure CC expiration date default is in the future
