@@ -44,6 +44,10 @@ class RoundTest < ActiveSupport::TestCase
     assert_equal 0, @r.seconds_left
   end
 
+  test "seconds_left has second precision" do
+    assert_equal @r.seconds_left.round, @r.seconds_left
+  end
+
   test "expired rounds automatically marked closed" do
     @r.expire_time = Time.now - Rails.application.config.round_duration - 1.hours
 
