@@ -2,6 +2,7 @@ class Donation < ActiveRecord::Base
   belongs_to :round
 
   validates :email, presence: true
+  validates :round_id, presence: true
 
   after_initialize :select_donation_amount
   after_initialize :generate_secret

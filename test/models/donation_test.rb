@@ -2,7 +2,8 @@ require 'test_helper'
 
 class DonationTest < ActiveSupport::TestCase
   def setup
-    @donation = Donation.create(email: 'test1@example.com')
+    @round = Round.create
+    @donation = Donation.create(round: @round, email: 'test1@example.com')
   end
 
   test "donation amount randomly generated on create" do
