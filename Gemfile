@@ -53,4 +53,7 @@ group :development, :test do
   gem 'guard-minitest'
 
   gem "mocha", :require => false
+
+  gem 'spork-rails'
+  gem 'spork-testunit'
 end
