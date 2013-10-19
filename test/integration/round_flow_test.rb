@@ -16,7 +16,7 @@ class RoundFlowTest < ActionDispatch::IntegrationTest
     @charity = Charity.first
     @round = Round.create(charity: @charity)
 
-    users = (1..Rails.application.config.min_donations).map { open_session }
+    users = Rails.application.config.min_donations.times.map { open_session }
 
     donations = users.map do |user|
       user.post "/api/donations", {donation: {round_id: @round.id, email: 'test.email@example.com', name: 'Test User', stripe_token: @token}}
