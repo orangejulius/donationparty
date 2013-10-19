@@ -38,7 +38,6 @@ Spork.prefork do
   require File.expand_path('../../config/environment', __FILE__)
   require 'rails/test_help'
 
-  require 'fakeredis'
   require 'resque_unit_scheduler'
 
 end
