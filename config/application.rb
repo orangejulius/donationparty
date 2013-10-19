@@ -55,6 +55,8 @@ module Donationparty
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
+    config.active_record.observers = :round_observer
+
     config.gravatar_url = 'https://www.gravatar.com/avatar/%s?d=retro'
 
     config.max_donation = 20
