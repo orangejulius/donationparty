@@ -21,9 +21,9 @@ class RoundTest < ActiveSupport::TestCase
     @round.save
     round = Round.find_by url: @round.url
 
-    assert_equal round.url, @round.url
+    assert_equal @round.url, round.url
 
-    assert_equal round.expire_time, @round.expire_time
+    assert_equal @round.expire_time, round.expire_time
   end
 
   test "expire_time does not have miliseconds" do
