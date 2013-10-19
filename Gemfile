@@ -60,4 +60,5 @@ group :development, :test do
   gem 'spork-rails'
   gem 'spork-testunit'
   gem "fakeredis", :require => false
+  gem "resque_unit"
 end
