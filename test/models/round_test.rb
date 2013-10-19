@@ -31,12 +31,10 @@ class RoundTest < ActiveSupport::TestCase
   end
 
   test "seconds_left returns time until round expires" do
-    round = Round.create
-
     round_duration = Rails.application.config.round_duration
-    round.expire_time = Time.now + round_duration
+    @round.expire_time = Time.now + round_duration
 
-    assert round.seconds_left - round_duration < 1
+    assert @round.seconds_left - round_duration < 1
   end
 
   test "seconds_left is never negative" do
@@ -74,16 +72,17 @@ class RoundTest < ActiveSupport::TestCase
   end
 
   test "round failed if closed without enough donations" do
-    round = Round.create(expire_time: Time.now - 1.hour)
+    @round.expire_time = Time.now - 1.hour
+    @round.save
 
-    assert_equal true, round.failed
+    assert_equal true, @round.failed
 
     donations = []
     Rails.application.config.min_donations.times do |i|
-      donations.append Donation.create(round: round, amount: i, email: 'test@example.com')
+      donations.append Donation.create(round: @round, amount: i, email: 'test@example.com')
     end
 
-    assert_equal false, round.failed
+    assert_equal false, @round.failed
   end
 
   test "total_raised returns total donation amount after round closes successfully" do
