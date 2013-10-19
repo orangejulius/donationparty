@@ -11,7 +11,6 @@ class Api::DonationsControllerTest < ActionController::TestCase
     Donation.any_instance.stubs(:chargeObject).returns(stripeMock)
     Donation.any_instance.stubs(:amount).returns(1)
 
-    Round.any_instance.stubs(:notify_subscribers)
     Round.any_instance.expects(:notify_subscribers).once
 
     post :create, {donation: @donation.attributes}
