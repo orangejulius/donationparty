@@ -26,6 +26,8 @@ gem 'pusher'
 
 gem 'friendly_id', '5.0.0.rc3'
 
+gem 'resque-scheduler', :require => 'resque_scheduler'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
