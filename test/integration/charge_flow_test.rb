@@ -15,12 +15,6 @@ class ChargeFlowTest < ActionDispatch::IntegrationTest
 
     token = 'test_stripe_token'
 
-    stripeMock = mock('Charge')
-    stripeMock.expects(:create).with(amount: 100, currency: 'usd', card: token, description: 'test.email@example.com')
-
-    Donation.any_instance.stubs(:chargeObject).returns(stripeMock)
-    Donation.any_instance.stubs(:amount).returns(1)
-
     post "/api/donations", {donation: {stripe_token: token, round_id: @round.id, name: 'Test User', email: 'test.email@example.com'}}
     assert_response :ok
 

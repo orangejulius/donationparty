@@ -1,8 +1,6 @@
 class Api::DonationsController < ApplicationController
   def create
-    @donation = Donation.new donation_params
-    @donation.charge
-    @donation.save
+    @donation = Donation.create donation_params
 
     cookies['donated_'+@donation.round.url] = @donation.token
 

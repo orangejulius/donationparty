@@ -2,13 +2,6 @@ require 'test_helper'
 
 class RoundFlowTest < ActionDispatch::IntegrationTest
   setup do
-    @token = 'test_stripe_token'
-    stripeMock = mock('Charge')
-    stripeMock.expects(:create).with(amount: 100, currency: 'usd', card: @token, description: 'test.email@example.com').times(Rails.application.config.min_donations)
-
-    Donation.any_instance.stubs(:chargeObject).returns(stripeMock)
-    Donation.any_instance.stubs(:amount).returns(1)
-
     Round.any_instance.stubs(:notify_subscribers)
   end
 
