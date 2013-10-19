@@ -50,10 +50,10 @@ class Round < ActiveRecord::Base
   end
 
   def notify_subscribers
-    realtime.trigger(url, 'new:charge', {})
+    Round.realtime.trigger(url, 'new:charge', {})
   end
 
-  def realtime
+  def self.realtime
     Pusher
   end
 end
