@@ -39,6 +39,7 @@ Spork.prefork do
   require 'rails/test_help'
 
   require 'fakeredis'
+  require 'resque_unit_scheduler'
 
 end
 
