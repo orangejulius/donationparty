@@ -12,8 +12,6 @@ Donationparty::Application.routes.draw do
 
   resources :round, only: [:create, :show]
 
-  get "home/index"
-
   root :to => "home#index"
 
   # The priority is based upon order of creation:
