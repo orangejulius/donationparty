@@ -58,16 +58,16 @@ class RoundTest < ActiveSupport::TestCase
 
   test "winner returns donation with highest amount if round finished" do
     @round.save
-    donations = []
-    Rails.application.config.min_donations.times do |i|
-      donations.append Donation.create(round: @round, amount: i, email: 'test@example.com')
+
+    Rails.application.config.min_donations.times do
+      Donation.create(round: @round, email: 'test@example.com')
     end
 
     assert_nil @round.winner
 
     @round.update_attribute(:closed, true)
 
-    assert_equal donations.last, @round.winner
+    assert_equal @round.donations.max_by(&:amount), @round.winner
   end
 
   test "round failed if closed without enough donations" do
@@ -76,9 +76,8 @@ class RoundTest < ActiveSupport::TestCase
 
     assert_equal true, @round.failed
 
-    donations = []
-    Rails.application.config.min_donations.times do |i|
-      donations.append Donation.create(round: @round, amount: i, email: 'test@example.com')
+    Rails.application.config.min_donations.times do
+      Donation.create(round: @round, email: 'test@example.com')
     end
 
     assert_equal false, @round.failed
@@ -87,16 +86,15 @@ class RoundTest < ActiveSupport::TestCase
   test "total_raised returns total donation amount after round closes successfully" do
     assert_equal 0, @round.total_raised
 
-    donations = []
-    Rails.application.config.min_donations.times do |i|
-      donations.append Donation.create(round: @round, amount: i, email: 'test@example.com')
+    Rails.application.config.min_donations.times do
+      Donation.create(round: @round, email: 'test@example.com')
     end
 
     assert_equal 0, @round.total_raised
 
     @round.closed = true
 
-    assert_equal donations.inject(0) {|sum, d| sum + d.amount}, @round.total_raised
+    assert_equal @round.donations.map(&:amount).inject(&:+), @round.total_raised
   end
 
   test "winner returns nil if round failed with not enough donations" do
