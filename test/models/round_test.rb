@@ -74,13 +74,13 @@ class RoundTest < ActiveSupport::TestCase
     @round.expire_time = Time.now - 1.hour
     @round.save
 
-    assert_equal true, @round.failed
+    assert_equal true, @round.failed?
 
     Rails.application.config.min_donations.times do
       Donation.create(round: @round, email: 'test@example.com')
     end
 
-    assert_equal false, @round.failed
+    assert_equal false, @round.failed?
   end
 
   test "total_raised returns total donation amount after round closes successfully" do

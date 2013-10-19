@@ -1,4 +1,4 @@
-<% if @round.failed %>
+<% if @round.failed? %>
 <div class="boxed lead running">
     <img src="<%= asset_path @round.charity.image_name %>" />
     <h2>The Party is Over</h2>
@@ -25,7 +25,7 @@
         <% end %>
     </div>
     <div class="span7">
-        <ol class="donations <% if @round.failed %>failed<% end %>">
+        <ol class="donations <% if @round.failed? %>failed<% end %>">
             <%= render 'donations' %>
         </ol>
     </div>
