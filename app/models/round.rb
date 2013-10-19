@@ -37,7 +37,7 @@ class Round < ActiveRecord::Base
     donations.max_by(&:amount) if success?
   end
 
-  def failed
+  def failed?
     closed and donations.count < Rails.application.config.min_donations
   end
 
@@ -46,7 +46,7 @@ class Round < ActiveRecord::Base
   end
 
   def success?
-    closed and not failed
+    closed and not failed?
   end
 
   def notify_subscribers
