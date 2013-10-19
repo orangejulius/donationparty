@@ -65,8 +65,7 @@ class RoundTest < ActiveSupport::TestCase
 
     assert_nil @round.winner
 
-    @round.closed = true
-    @round.save
+    @round.update_attribute(:closed, true)
 
     assert_equal donations.last, @round.winner
   end
@@ -104,8 +103,7 @@ class RoundTest < ActiveSupport::TestCase
     @round.save
     @donation = Donation.create(round: @round, email: 'test@example.com')
 
-    @round.closed = true
-    @round.save
+    @round.update_attribute(:closed, true)
     @round.reload
 
     assert_equal nil, @round.winner
