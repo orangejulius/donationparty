@@ -26,6 +26,7 @@ gem 'pusher'
 
 gem 'friendly_id', '5.0.0.rc3'
 
+gem 'rails-observers'
 gem 'resque-scheduler', :require => 'resque_scheduler'
 
 # To use ActiveModel has_secure_password
