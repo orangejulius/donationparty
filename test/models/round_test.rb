@@ -7,9 +7,9 @@ class RoundTest < ActiveSupport::TestCase
 
   test "newly created round has randomly generated url string" do
     stub_secure_random_hex(Round::URL_LENGTH / 2)
-    r = Round.new
+    round = Round.new
 
-    assert_equal fake_random_hex(Round::URL_LENGTH), r.url
+    assert_equal fake_random_hex(Round::URL_LENGTH), round.url
   end
 
   test "newly created round has expire time of one hour" do
@@ -19,11 +19,11 @@ class RoundTest < ActiveSupport::TestCase
 
   test "url and expire_time persist on save" do
     @round.save
-    r2 = Round.find_by url: @round.url
+    round = Round.find_by url: @round.url
 
-    assert_equal r2.url, @round.url
+    assert_equal round.url, @round.url
 
-    assert_equal r2.expire_time, @round.expire_time
+    assert_equal round.expire_time, @round.expire_time
   end
 
   test "expire_time does not have miliseconds" do
@@ -31,12 +31,12 @@ class RoundTest < ActiveSupport::TestCase
   end
 
   test "seconds_left returns time until round expires" do
-    r = Round.create
+    round = Round.create
 
     round_duration = Rails.application.config.round_duration
-    r.expire_time = Time.now + round_duration
+    round.expire_time = Time.now + round_duration
 
-    assert r.seconds_left - round_duration < 1
+    assert round.seconds_left - round_duration < 1
   end
 
   test "seconds_left is never negative" do
