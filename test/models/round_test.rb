@@ -84,6 +84,7 @@ class RoundTest < ActiveSupport::TestCase
   end
 
   test "total_raised returns total donation amount after round closes successfully" do
+    @round.save
     assert_equal 0, @round.total_raised
 
     Rails.application.config.min_donations.times do
