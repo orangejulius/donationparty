@@ -6,9 +6,9 @@ class RoundMailer < ActionMailer::Base
   #
   #   en.round_mailer.round_success.subject
   #
-  def round_success
+  def round_success(round, email)
     @greeting = "Hi"
 
-    mail to: "to@example.org"
+    mail to: email
   end
 end
