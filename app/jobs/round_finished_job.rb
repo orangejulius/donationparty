@@ -7,6 +7,10 @@ class RoundFinishedJob
       round.donations.each do |donation|
         RoundMailer.round_success(round, donation.email).deliver
       end
+    elsif round.failed?
+      round.donations.each do |donation|
+        RoundMailer.round_failed(round, donation.email).deliver
+      end
     end
   end
 
