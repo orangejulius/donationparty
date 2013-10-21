@@ -11,4 +11,9 @@ class RoundMailer < ActionMailer::Base
 
     mail to: email
   end
+
+  def round_failed(round, email)
+    mail to: email, subject: "not enough people donated"
+    @round = round
+  end
 end
