@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+charity_data =   [["EFF", "eff.png"], ["Child's Play", "childsplay.png"], ["Red Cross", "redcross.png"], ["Oxfam", "oxfam.png"], ["Greenpeace", "greenpeace.png"]]
+
+charity_data.each do |data|
+  Charity.create(name: data[0], image_name: data[1])
+end
