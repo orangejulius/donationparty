@@ -24,7 +24,7 @@ gem 'twitter-bootstrap-rails'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'pusher'
 
-gem 'friendly_id', '5.0.0.rc3'
+gem 'friendly_id', '5.0.3'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
