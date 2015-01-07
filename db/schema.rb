@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20131015054149) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "addresses", force: true do |t|
     t.string   "line1"
     t.string   "line2"
@@ -20,16 +23,16 @@ ActiveRecord::Schema.define(version: 20131015054149) do
     t.string   "city"
     t.string   "state"
     t.string   "country"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "round_id"
   end
 
   create_table "charities", force: true do |t|
     t.string   "name"
     t.string   "image_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "donations", force: true do |t|
@@ -38,8 +41,8 @@ ActiveRecord::Schema.define(version: 20131015054149) do
     t.string   "stripe_token"
     t.decimal  "amount"
     t.integer  "round_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "secret"
   end
 
@@ -51,10 +54,9 @@ ActiveRecord::Schema.define(version: 20131015054149) do
     t.boolean  "closed",       default: false
     t.integer  "max_amount"
     t.string   "secret_token"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "charity_id"
-    t.integer  "address_id"
   end
 
 end
