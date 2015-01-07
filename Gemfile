@@ -19,7 +19,7 @@ gem 'underscore-rails'
 gem 'therubyracer'
 gem 'jquery-rails'
 gem 'less-rails'
-gem 'twitter-bootstrap-rails'
+gem 'twitter-bootstrap-rails', '=2.2.8'
 
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'pusher'
