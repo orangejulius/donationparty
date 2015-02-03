@@ -16,3 +16,5 @@
 
 # Ignore Foreman .env file
 .env
+
+public/assets
